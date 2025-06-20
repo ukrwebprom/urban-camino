@@ -1,0 +1,23 @@
+.panel {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+  }
+.button {
+    background-color: #ffd700;
+    border: none;
+    padding: 8px 16px;
+    margin: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+  
+.button:hover {
+    background-color: #ffcc00;
+}

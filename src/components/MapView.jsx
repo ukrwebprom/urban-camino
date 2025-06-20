@@ -1,6 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { routeGeoJson } from './route';
+import { routeGeoJson } from '../routes/padawan';
+import UserMarker from './UserMarker';
 
 function MapView() {
   const position = [46.47682810156394, 30.7649023743933]; 
@@ -11,11 +12,7 @@ function MapView() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; OpenStreetMap contributors'
       />
-      <Marker position={position}>
-        <Popup>
-          Начало пути.
-        </Popup>
-      </Marker>
+      <UserMarker />
 
       <GeoJSON data={routeGeoJson} />
     </MapContainer>
