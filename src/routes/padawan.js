@@ -1,4 +1,4 @@
-export const routeGeoJson = {
+const routeGeoJson = {
     "type": "FeatureCollection",
     "features": [
       {
@@ -88,3 +88,96 @@ export const routeGeoJson = {
       }
     ]
   }
+
+
+
+ const checkPoints = [ {
+    "type": "Feature",
+    "properties": {"id": 1, "name": "Старт"},
+    "geometry": {
+      "coordinates": [
+        30.763146215750595,
+        46.4686212219529
+      ],
+      "type": "Point"
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {"id": 2, "name": "---"},
+    "geometry": {
+      "coordinates": [
+        30.763242247136077,
+        46.46988834452364
+      ],
+      "type": "Point"
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {"id": 3, "name": "---"},
+    "geometry": {
+      "coordinates": [
+        30.76399607472348,
+        46.471231600893475
+      ],
+      "type": "Point"
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {"id": 4, "name": "---"},
+    "geometry": {
+      "coordinates": [
+        30.764754834587052,
+        46.472582561543675
+      ],
+      "type": "Point"
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {"id": 5, "name": "---"},
+    "geometry": {
+      "coordinates": [
+        30.764214025762925,
+        46.47434809776121
+      ],
+      "type": "Point"
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {"id": 6, "name": "---"},
+    "geometry": {
+      "coordinates": [
+        30.764258415832956,
+        46.475552268461854
+      ],
+      "type": "Point"
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {"id": 7, "name": "---"},
+    "geometry": {
+      "coordinates": [
+        30.764780219595224,
+        46.476277055860606
+      ],
+      "type": "Point"
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {"id": 8, "name": "Финиш"},
+    "geometry": {
+      "coordinates": [
+        30.76490440869489,
+        46.476825256429294
+      ],
+      "type": "Point"
+    }
+  }]
+
+export {routeGeoJson, checkPoints};
