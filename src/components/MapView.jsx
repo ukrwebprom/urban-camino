@@ -11,6 +11,7 @@ const routeStyle = {
   lineJoin: 'round'      // скругление углов
 };
 
+
 function MapView() {
   const position = [46.47682810156394, 30.7649023743933]; 
 
