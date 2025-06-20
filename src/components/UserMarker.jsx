@@ -17,6 +17,7 @@ function UserMarker() {
         (pos) => {
           const coords = [pos.coords.latitude, pos.coords.longitude];
           setPosition(coords);
+          map.setView(coords);
         },
         (err) => {
           console.error('Ошибка геолокации:', err);
@@ -29,7 +30,7 @@ function UserMarker() {
       );
   
       return () => navigator.geolocation.clearWatch(watchId);
-    }, []);
+    }, [map]);
   
     if (!position) return null;
   
