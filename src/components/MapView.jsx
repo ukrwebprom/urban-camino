@@ -1,6 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { routeGeoJson } from '../routes/padawan';
+import { routeGeoJson } from '../routes/tash';
 import UserMarker from './UserMarker';
 
 function MapView() {
