@@ -20,7 +20,12 @@ function App() {
   //   });
   // }, []);
 
-
+  useEffect(() => {
+  if (selectedRouteId) {
+    setStep('journey');
+  }
+  }, [selectedRouteId]);
+  
   return (
     <div style={{ height: "100vh", width: "100vw" }}>
 
@@ -28,12 +33,19 @@ function App() {
       {step === 'select' && <RouteSelectScreen 
         onSelect={(routeId) => {
           setSelectedRouteId(routeId);
-          setStep('journey')}
+          }
         } 
         onBack={()=> setStep('home')} />}
-      {step === 'journey' && <JourneyScreen routeId={selectedRouteId} 
+      {step === 'journey' && (
+        <>
+        {console.log('selectedRouteId (App):', selectedRouteId)}
+        <JourneyScreen 
+        key={selectedRouteId}
+        routeId={selectedRouteId} 
         onComplete={() => setStep('finish')}
-        onBack={()=> setStep('select')} />}
+        onBack={()=> setStep('select')} />
+        </>
+      )}
       {step === 'finish' && <FinishScreen />}
 
     </div>

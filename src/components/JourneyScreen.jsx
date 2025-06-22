@@ -7,11 +7,11 @@ function JourneyScreen({routeId, onComplete, onBack }) {
   const [phase, setPhase] = useState('beforeStart'); // 'beforeStart' | 'readyToStart' | 'tracking'
   const [position, setPosition] = useState(null);
   const [passedIds, setPassedIds] = useState([]);
-
+  console.log('routeId:', routeId);
 
   const route = routeMap[routeId];
   const startPoint = route.checkPoints[0].geometry.coordinates;
-
+  console.log('route:', route);
   useEffect(() => {
     const watchId = navigator.geolocation.watchPosition(
       (pos) => {
@@ -78,6 +78,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
   return (
     <div style={{ padding: '2rem' }}>
       <h2>{route.name}</h2>
+      <p>Расстояние {route.distance}km</p>
       <button onClick={onBack}>Back</button>
       {phase === 'beforeStart' && <p>Доберитесь до стартовой точки</p>}
 

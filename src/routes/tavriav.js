@@ -1,7 +1,7 @@
 const tavria = {
-  id: 'padawan',
-  name: 'Camino del Padawan',
-  distance: 1,
+  id: 'tavriav',
+  name: 'Camino del Tavria V',
+  distance: 0.34,
   geoJson: {
   "type": "FeatureCollection",
   "features": [

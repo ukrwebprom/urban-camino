@@ -6,12 +6,6 @@ const routes = [
         distance: 1
     },
     {
-    id: 'tash',
-    name: 'Camino del Tash',
-    description: 'Кольцо вокруг парка',
-    distance: 2
-    },
-    {
     id: 'tavria',
     name: 'Camino del Tavria',
     description: 'Дорога в Таврию В',
