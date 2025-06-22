@@ -12,10 +12,10 @@ const routes = [
     distance: 2
     },
     {
-    id: 'tavriav',
+    id: 'tavria',
     name: 'Camino del Tavria',
     description: 'Дорога в Таврию В',
-    distance: 0.4
+    distance: 0.34
     }
 ]
 function RouteSelectScreen({ onSelect, onBack }) {
