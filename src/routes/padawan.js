@@ -1,4 +1,8 @@
-const routeGeoJson = {
+const padawan = {
+  id: 'padawan',
+  name: 'Camino del Padawan',
+  distance: 1,
+  geoJson: {
     "type": "FeatureCollection",
     "features": [
       {
@@ -87,11 +91,8 @@ const routeGeoJson = {
         }
       }
     ]
-  }
-
-
-
- const checkPoints = [ {
+  },
+  checkPoints: [{
     "type": "Feature",
     "properties": {"id": 1, "name": "Старт"},
     "geometry": {
@@ -179,5 +180,6 @@ const routeGeoJson = {
       "type": "Point"
     }
   }]
+};
 
-export {routeGeoJson, checkPoints};
+export default padawan;

@@ -1,6 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup, GeoJSON, CircleMarker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { routeGeoJson, checkPoints } from '../routes/padawan';
+// import { routeGeoJson, checkPoints } from '../routes/padawan';
 import UserMarker from './UserMarker';
 
 const routeStyle = {
@@ -23,7 +23,7 @@ function MapView() {
       />
       <UserMarker />
 
-      <GeoJSON data={routeGeoJson} style={routeStyle} />
+      {/* <GeoJSON data={routeGeoJson} style={routeStyle} />
       {checkPoints.map((point) => (
         <CircleMarker
         key={point.properties.id}
@@ -36,7 +36,7 @@ function MapView() {
       >
         <Popup>{point.properties.name}</Popup>
         </CircleMarker>
-      ))}
+      ))} */}
     </MapContainer>
   );
 }
