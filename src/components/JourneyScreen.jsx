@@ -80,7 +80,16 @@ function JourneyScreen({routeId, onComplete, onBack }) {
       <h2>{route.name}</h2>
       <p>Расстояние {route.distance}km</p>
       <button onClick={onBack}>Back</button>
-      {phase === 'beforeStart' && <p>Доберитесь до стартовой точки</p>}
+      {phase === 'beforeStart' && (
+      <>
+        <p>Доберитесь до стартовой точки</p>
+        <MapView
+        route={route}
+        userPosition={position}
+        startPoint={startPoint}
+        />
+      </>
+      )}
 
       {phase === 'readyToStart' && (
         <div>
