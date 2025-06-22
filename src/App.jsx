@@ -31,7 +31,9 @@ function App() {
           setStep('journey')}
         } 
         onBack={()=> setStep('home')} />}
-      {step === 'journey' && <JourneyScreen routeId={selectedRouteId} onNext={() => setStep('finish')} />}
+      {step === 'journey' && <JourneyScreen routeId={selectedRouteId} 
+        onComplete={() => setStep('finish')}
+        onBack={()=> setStep('select')} />}
       {step === 'finish' && <FinishScreen />}
 
     </div>

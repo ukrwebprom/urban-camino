@@ -3,11 +3,13 @@ import MapView from './MapView';
 import routeMap from '../routes';
 import getDistance from '../utils/getDistance';
 
-function JourneyScreen({routeId, onComplete }) {
+function JourneyScreen({routeId, onComplete, onBack }) {
   const [phase, setPhase] = useState('beforeStart'); // 'beforeStart' | 'readyToStart' | 'tracking'
   const [position, setPosition] = useState(null);
-  const route = routeMap[routeId];  // routeId === 'padawan'
+  const [passedIds, setPassedIds] = useState([]);
 
+
+  const route = routeMap[routeId];
   const startPoint = route.checkPoints[0].geometry.coordinates;
 
   useEffect(() => {
@@ -16,24 +18,67 @@ function JourneyScreen({routeId, onComplete }) {
         const coords = [pos.coords.latitude, pos.coords.longitude];
         setPosition(coords);
 
-        const dist = getDistance(coords, [startPoint[1], startPoint[0]]); // [lat, lng]
-
-        if (phase === 'beforeStart' && dist < 30) {
-          setPhase('readyToStart');
-        }
+        handlePhaseLogic(phase, coords);
       },
-      (err) => console.error(err),
-      { enableHighAccuracy: true }
+      (err) => console.error('Geo error:', err),
+      { enableHighAccuracy: true, maximumAge: 5000, timeout: 10000 }
     );
 
     return () => navigator.geolocation.clearWatch(watchId);
-  }, [phase, startPoint]);
+  }, [phase, passedIds]);
+
+ function handlePhaseLogic(currentPhase, coords) {
+    switch (currentPhase) {
+      case 'beforeStart':
+        checkArrivalAtStart(coords);
+        break;
+      case 'tracking':
+        checkPassedCheckpoints(coords);
+        break;
+      default:
+        break;
+    }
+  }
+
+
+  function checkArrivalAtStart(coords) {
+    const [startLng, startLat] = route.geoJson.features[0].geometry.coordinates[0];
+    const distance = getDistance(coords, [startLat, startLng]);
+
+    if (distance < 30) {
+      setPhase('readyToStart');
+    }
+  }
+
+  function checkPassedCheckpoints(coords) {
+    route.checkPoints.forEach((point) => {
+      const id = point.properties.id;
+      if (passedIds.includes(id)) return;
+
+      const [lng, lat] = point.geometry.coordinates;
+      const dist = getDistance(coords, [lat, lng]);
+
+      if (dist < 30) {
+        setPassedIds(prev => [...prev, id]);
+      }
+    });
+  }
+
+  useEffect(() => {
+    if (
+      phase === 'tracking' &&
+      passedIds.length === route.checkPoints.length
+    ) {
+      onComplete();
+    }
+  }, [passedIds, route, phase, onComplete]);
 
   const handleStart = () => setPhase('tracking');
 
   return (
     <div style={{ padding: '2rem' }}>
       <h2>{route.name}</h2>
+      <button onClick={onBack}>Back</button>
       {phase === 'beforeStart' && <p>Доберитесь до стартовой точки</p>}
 
       {phase === 'readyToStart' && (
