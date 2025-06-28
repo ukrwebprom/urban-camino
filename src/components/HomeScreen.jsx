@@ -26,7 +26,9 @@ function HomeScreen({ onNext }) {
         FIND ROUT
       </button>
 
-
+      <div className={styles.bottompanel}>
+        bottom panel
+      </div>
     </div>
   );
 }
