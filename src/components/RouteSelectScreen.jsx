@@ -1,12 +1,17 @@
 import routeMap from '../routes';
 import RouteSketch from '../utils/RouteSketch';
 import styles from './RouteSelectScreen.module.css';
+import logo from '../assets/logo.png';
 
 console.log(routeMap);
 function RouteSelectScreen({ onSelect, onBack }) {
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>Выберите маршрут</h2>
+    <>
+    <div className={styles.topPanel}>
+      <h1 className={styles.topPanelTitle}>Routes</h1>
+      <img src={logo} alt="Urban Camino Logo" className={styles.logo} />
+    </div>
+    <div className={styles.container}>
         {
             routeMap.map((route) => (
                 <div key={route.id} className={styles.routeCard}>
@@ -27,6 +32,7 @@ function RouteSelectScreen({ onSelect, onBack }) {
         }
       <button onClick={onBack}>back</button>
     </div>
+    </>
   );
 }
 
