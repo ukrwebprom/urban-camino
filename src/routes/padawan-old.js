@@ -5,7 +5,14 @@ const padawan = {
   start: 'Ланжерон 25',
   finish: 'Желтый камень',
   distance: 1,
-  coordinates: [
+  geoJson: {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "coordinates": [
             [
               30.7649023743933,
               46.47682810156394
@@ -83,47 +90,67 @@ const padawan = {
               46.46862056333231
             ]
           ],
+          "type": "LineString"
+        }
+      }
+    ]
+  },
   checkPoints: [
       {
-
-        id:'1', 
-        name:'Start',
-        coordinates: [
+        "type": "Feature",
+        "properties": {id:'1', name:'Start'},
+        "geometry": {
+          "coordinates": [
             30.764912754816947,
             46.47681843050805
-          ]
+          ],
+          "type": "Point"
+        },
+        "id": 5
       },
       {
-        id:'2', 
-        name:'2 balls',
-        coordinates: [
+        "type": "Feature",
+        "properties": {id:'2', name:'2 balls'},
+        "geometry": {
+          "coordinates": [
             30.76427252329711,
             46.47558139540024
-          ]
+          ],
+          "type": "Point"
+        }
       },
       {
-        id:'3', 
-        name:'Police',
-        coordinates: [
+        "type": "Feature",
+        "properties": {id:'3', name:'Police'},
+        "geometry": {
+          "coordinates": [
             30.764221581566318,
             46.47345549240106
           ],
+          "type": "Point"
+        }
       },
       {
-        id:'4', 
-        name:'Shalanda',
-        coordinates: [
+        "type": "Feature",
+        "properties": {id:'4', name:'Shalanda'},
+        "geometry": {
+          "coordinates": [
             30.76403819515869,
             46.471235256882295
-          ]
+          ],
+          "type": "Point"
+        }
       },
       {
-        id:'5', 
-        name:'Finish',
-        coordinates: [
+        "type": "Feature",
+        "properties": {id:'5', name:'Finish'},
+        "geometry": {
+          "coordinates": [
             30.763152826547667,
             46.46861331909838
-          ]
+          ],
+          "type": "Point"
+        }
       }
   ]
 };
