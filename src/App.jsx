@@ -28,7 +28,6 @@ function App() {
   
   return (
     <div style={{ height: "100vh", width: "100vw" }}>
-
       {step === 'home' && <HomeScreen onNext={() => setStep('select')} />}
       {step === 'select' && <RouteSelectScreen 
         onSelect={(routeId) => {
