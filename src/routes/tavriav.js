@@ -5,14 +5,7 @@ const tavria = {
   start: 'Старопортофранковская 33',
   finish: 'Новосельского 46а',
   distance: 0.34,
-  geoJson: {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "coordinates": [
+  coordinates: [
           [
             30.72096651677873,
             46.486747224637725
@@ -30,55 +23,38 @@ const tavria = {
             46.48873273134882
           ]
         ],
-        "type": "LineString"
-      }
-    }
-  ]
-  },
   checkPoints:[
-{
-      "type": "Feature",
-      "properties": {"id": 1, "name": "Старт"},
-      "geometry": {
-        "coordinates": [
+    {
+      id: '1',
+      name: "Старт",
+      coordinates: [
           30.71908431535789,
           46.48871052810796
         ],
-        "type": "Point"
-      }
     },
     {
-      "type": "Feature",
-      "properties": {"id": 2, "name": "Переулок"},
-      "geometry": {
-        "coordinates": [
+      id: "2", 
+      name: "Переулок",
+      coordinates: [
           30.71953199302675,
           46.48741427896621
         ],
-        "type": "Point"
-      }
     },
     {
-      "type": "Feature",
-      "properties": {"id": 3, "name": "Наливайка"},
-      "geometry": {
-        "coordinates": [
+      id: "3", 
+      name: "Наливайка",
+      coordinates: [
           30.72041508322249,
           46.48766761998925
         ],
-        "type": "Point"
-      }
     },
     {
-      "type": "Feature",
-      "properties": {"id": 4, "name": "Финиш"},
-      "geometry": {
-        "coordinates": [
+      id: "4",
+      name: "Финиш",
+      coordinates: [
           30.720948614158402,
           46.48677669956655
         ],
-        "type": "Point"
-      }
     }
   ]
 
