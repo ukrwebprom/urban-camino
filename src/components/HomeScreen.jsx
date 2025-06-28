@@ -1,8 +1,17 @@
 import logo from '../assets/logo.png';
+import bgVideo from '../assets/bg.mp4';
 import styles from './HomeScreen.module.css';
 function HomeScreen({ onNext }) {
   return (
     <div className={styles.container}>
+      <video
+        className={styles.videoBg}
+        src={bgVideo}
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
       {/* Центр: логотип и название */}
       <div className={styles.logo}>
         <img src={logo} alt="Urban Camino Logo" className="w-20 h-20" />
@@ -16,6 +25,8 @@ function HomeScreen({ onNext }) {
       >
         FIND ROUT
       </button>
+
+
     </div>
   );
 }
