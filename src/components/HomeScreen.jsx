@@ -17,14 +17,14 @@ function HomeScreen({ onNext }) {
         <img src={logo} alt="Urban Camino Logo" className="w-20 h-20" />
         <h1 className={styles.name}>URBAN CAMINO</h1>
       </div>
-
+      <h1>Иди. Смотри. Чувствуй.</h1>
       {/* Кнопка внизу */}
-      <button
+      {/* <button
         className={styles.button}
         onClick={onNext}
       >
         FIND ROUT
-      </button>
+      </button> */}
 
       <div className={styles.bottompanel}>
         bottom panel
