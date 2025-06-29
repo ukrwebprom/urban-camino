@@ -7,14 +7,14 @@ import styles from './MapView.module.css';
 
 const startIcon = L.icon({
   iconUrl: flag, // путь к иконке
-  iconSize: [32, 32],                // размеры иконки
-  iconAnchor: [8, 32],              // точка "указания" — нижний край
+  iconSize: [64, 64],                // размеры иконки
+  iconAnchor: [16, 64],              // точка "указания" — нижний край
 });
 
 const userIcon = L.icon({
   iconUrl: user, // путь к иконке
-  iconSize: [32, 32],                // размеры иконки
-  iconAnchor: [16, 32],              // точка "указания" — нижний край
+  iconSize: [64, 64],                // размеры иконки
+  iconAnchor: [32, 64],              // точка "указания" — нижний край
 });
 
   // ⏱ FitBounds при фазе "toStart"
