@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-function RouteSketch({ route, checkpoints = [], padding = 15, classname }) {
+function RouteSketch({ route, checkpoints = [], padding = 35, classname }) {
   const containerRef = useRef(null);
   const [size, setSize] = useState(0); // ширина и высота (квадрат)
 
@@ -53,7 +53,7 @@ function RouteSketch({ route, checkpoints = [], padding = 15, classname }) {
       <svg width={size} height={size}>
         <path
           d={pathData}
-          stroke="#F3C200"
+          stroke="#999"
           fill="none"
           strokeWidth="8"
           strokeLinecap="round"
@@ -66,7 +66,7 @@ function RouteSketch({ route, checkpoints = [], padding = 15, classname }) {
             cy={y}
             r="6"
             fill="white"
-            stroke="#F3C200"
+            stroke="#999"
             strokeWidth="4"
           />
         ))}

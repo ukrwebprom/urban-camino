@@ -17,23 +17,26 @@ function RouteSelectScreen({ onSelect, onBack }) {
                 <div key={route.id} className={styles.routeCard}>
                     <h3 className={styles.title}>{route.name}</h3>
                     <p className={styles.description}>{route.description}</p>
-                    <div className={styles.startFinish}>
-                      <h4>Start</h4>
-                      <p>{route.start}</p>
+                    <div className={styles.routeInfo}>
+                      <RouteSketch route = {route.coordinates}
+                      checkpoints={route.checkPoints.map((point) => (point.coordinates))} 
+                      classname={styles.routeMap} />
+                      <div className={styles.routeData}>
+                        <div className={styles.startFinish}>
+                          <h4>Start</h4>
+                          <p>{route.start}</p>
+                        </div>
+                        <div className={styles.startFinish}>
+                          <h4>Finish</h4>
+                          <p>{route.finish}</p>
+                        </div>
+                      </div>
+                      <button onClick={() => onSelect(route.id)} className={styles.button}>Выбрать</button>
                     </div>
-                    <div className={styles.startFinish}>
-                      <h4>Finish</h4>
-                      <p>{route.finish}</p>
-                    </div>
-                    <RouteSketch 
-                    route = {
-                      route.coordinates
-                    }
-                    checkpoints={
-                      route.checkPoints.map((point) => (point.coordinates))
-                    } classname={styles.routeMap} />
+                    
+                    
 
-                    <button onClick={() => onSelect(route.id)} className={styles.button}>Выбрать</button>
+                    
                 </div>
             ))
         }

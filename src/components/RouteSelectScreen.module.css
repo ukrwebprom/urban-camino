@@ -37,7 +37,6 @@
     padding:15px 10px 10px 10px;
     margin-bottom:10px;
     position: relative;
-    height:400px;
 }
 .title {
     font-family: inherit;
@@ -76,11 +75,19 @@
     padding:0;
     margin:0;
 }
-.routeMap {
+.routeInfo {
+    position:relative;
+}
+.routeData {
     position:absolute;
+    top:0;
+    left:0;
+}
+.routeMap {
+    /* position:absolute;
     top:35px;
     left:0;
-    z-index:0;
+    z-index:0; */
 }
 .button {
     background-color: black;
@@ -89,7 +96,9 @@
     font-size: 15px;
     padding:10px;
     border-radius: 8px;
-    position:relative;
+    position:absolute;
+    bottom:10px;
+    right:0;
     z-index:10;
 }
 @media screen and (min-width: 800px) {
