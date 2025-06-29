@@ -47,6 +47,8 @@
     line-height: 0.9em;
     padding:0;
     margin:0;
+    position:relative;
+    z-index:10;
 }
 .description {
     font-family: inherit;
@@ -56,6 +58,23 @@
     line-height: 1.2em;
     position:relative;
     z-index:10;
+}
+.startFinish {
+    position:relative;
+    z-index:10;  
+    margin-bottom: 10px;
+}
+.startFinish > h4 {
+    font-family: inherit;
+    font-size: 10px;
+    padding:0;
+    margin:0;
+}
+.startFinish > p {
+    font-family: inherit;
+    font-size: 16px;
+    padding:0;
+    margin:0;
 }
 .routeMap {
     position:absolute;

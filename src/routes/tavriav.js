@@ -1,7 +1,7 @@
 const tavria = {
   id: 'tavriav',
   name: 'Camino del Tavria V',
-  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae massa convallis, rutrum lectus id, scelerisque est. Pellentesque sit amet justo sit amet elit vestibulum dignissim et non dui.',
+  description: 'Просто дорога из дома в Таврию В',
   start: 'Старопортофранковская 33',
   finish: 'Новосельского 46а',
   distance: 0.34,

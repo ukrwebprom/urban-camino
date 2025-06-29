@@ -17,7 +17,14 @@ function RouteSelectScreen({ onSelect, onBack }) {
                 <div key={route.id} className={styles.routeCard}>
                     <h3 className={styles.title}>{route.name}</h3>
                     <p className={styles.description}>{route.description}</p>
-                    <p>Длина: {route.distance} км</p>
+                    <div className={styles.startFinish}>
+                      <h4>Start</h4>
+                      <p>{route.start}</p>
+                    </div>
+                    <div className={styles.startFinish}>
+                      <h4>Finish</h4>
+                      <p>{route.finish}</p>
+                    </div>
                     <RouteSketch 
                     route = {
                       route.coordinates
