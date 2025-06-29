@@ -1,6 +1,21 @@
 import { useMap, MapContainer, TileLayer, Marker, Polyline, CircleMarker } from 'react-leaflet';
+import L from 'leaflet';
+import flag from '../assets/start.svg';
+import user from '../assets/user-location.svg';
 import { useEffect } from 'react';
 import styles from './MapView.module.css';
+
+const startIcon = L.icon({
+  iconUrl: flag, // путь к иконке
+  iconSize: [32, 32],                // размеры иконки
+  iconAnchor: [8, 32],              // точка "указания" — нижний край
+});
+
+const userIcon = L.icon({
+  iconUrl: user, // путь к иконке
+  iconSize: [32, 32],                // размеры иконки
+  iconAnchor: [16, 32],              // точка "указания" — нижний край
+});
 
   // ⏱ FitBounds при фазе "toStart"
 function FitBounds({ pos1, pos2 }) {
@@ -58,20 +73,19 @@ console.log('userPosition:',userPosition);
 
       {/* Положение пользователя */}
 {isValidCoord(userPosition) && (
-  <CircleMarker
-    center={userPosition}
-    radius={8}
-    pathOptions={{ color: 'white', fillColor: 'blue', fillOpacity: 1, weight: 2 }}
-  />
+  // <CircleMarker
+  //   center={userPosition}
+  //   radius={8}
+  //   pathOptions={{ color: 'white', fillColor: 'blue', fillOpacity: 1, weight: 2 }}
+  // />
+  <Marker position={userPosition} icon={userIcon} />
 )}
 
 {/* Стартовая точка */}
 {startPoint && (
-  <CircleMarker
-    center={startPoint}
-    radius={8}
-    pathOptions={{ color: 'yellow', fillColor: 'black', fillOpacity: 1, weight: 2 }}
-  />
+  <>
+  <Marker position={startPoint} icon={startIcon} />
+  </>
 )}
 
       {isValidCoord(userPosition) && startPoint && (
