@@ -32,6 +32,7 @@ function RouteSelectScreen({ onSelect, onBack }) {
                         </div>
                       </div>
                       <button onClick={() => onSelect(route.id)} className={styles.button}>Выбрать</button>
+                      <p className={styles.distance}>{route.distance}<span> km</span></p>
                     </div>
                     
                     
