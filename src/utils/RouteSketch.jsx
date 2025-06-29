@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-function RouteSketch({ route, checkpoints = [], padding = 15 }) {
+function RouteSketch({ route, checkpoints = [], padding = 15, classname }) {
   const containerRef = useRef(null);
   const [size, setSize] = useState(0); // ширина и высота (квадрат)
 
@@ -49,13 +49,13 @@ function RouteSketch({ route, checkpoints = [], padding = 15 }) {
   const pathData = scaledRoute.map(([x, y], i) => `${i === 0 ? 'M' : 'L'}${x},${y}`).join(' ');
 
   return (
-    <div ref={containerRef} style={{ width: '100%' }}>
+    <div ref={containerRef} style={{ width: '100%' }} className={classname}>
       <svg width={size} height={size}>
         <path
           d={pathData}
-          stroke="black"
+          stroke="#F3C200"
           fill="none"
-          strokeWidth="6"
+          strokeWidth="8"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -66,8 +66,8 @@ function RouteSketch({ route, checkpoints = [], padding = 15 }) {
             cy={y}
             r="6"
             fill="white"
-            stroke="black"
-            strokeWidth="3"
+            stroke="#F3C200"
+            strokeWidth="4"
           />
         ))}
       </svg>

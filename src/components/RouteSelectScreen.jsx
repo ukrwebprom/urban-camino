@@ -24,14 +24,15 @@ function RouteSelectScreen({ onSelect, onBack }) {
                     }
                     checkpoints={
                       route.checkPoints.map((point) => (point.coordinates))
-                    } />
+                    } classname={styles.routeMap} />
 
-                    <button onClick={() => onSelect(route.id)}>Выбрать</button>
+                    <button onClick={() => onSelect(route.id)} className={styles.button}>Выбрать</button>
                 </div>
             ))
         }
-      <button onClick={onBack}>back</button>
+      
     </div>
+    <button onClick={onBack}>back</button>
     </>
   );
 }

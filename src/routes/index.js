@@ -4,7 +4,10 @@ import tavria from './tavriav';
 
 const routeMap = [
   padawan,
-  tavria
+  tavria,
+  padawan,
+  tavria,
+  padawan,
   //tash: tash
   // в будущем добавим другие
 ];

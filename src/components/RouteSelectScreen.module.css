@@ -22,19 +22,27 @@
     height:50px;
 }
 .container {
-    padding:10px;
+    padding:15px;
     margin-top:80px;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    box-sizing: border-box;
 }
 .routeCard {
     background-color: #F6FF00;
     border-radius: 10px;
     padding:15px 10px 10px 10px;
     margin-bottom:10px;
+    position: relative;
+    height:400px;
 }
 .title {
     font-family: inherit;
     color:black;
-    font-size: 36px;
+    font-size: 30px;
     font-weight: 500;
     line-height: 0.9em;
     padding:0;
@@ -42,8 +50,35 @@
 }
 .description {
     font-family: inherit;
-    color:black;
-    font-size: 14px;
+    color:#333;
+    font-size: 12px;
     font-weight: 400;
-    line-height: 1em;
+    line-height: 1.2em;
+    position:relative;
+    z-index:10;
+}
+.routeMap {
+    position:absolute;
+    top:35px;
+    left:0;
+    z-index:0;
+}
+.button {
+    background-color: black;
+    font-family: inherit;
+    color:white;
+    font-size: 15px;
+    padding:10px;
+    border-radius: 8px;
+    position:relative;
+    z-index:10;
+}
+@media screen and (min-width: 800px) {
+  .routeCard {
+    width:300px;
+  }
+  .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
