@@ -2,16 +2,17 @@ import { useEffect, useState } from 'react';
 import MapView from './MapView';
 import routeMap from '../routes';
 import getDistance from '../utils/getDistance';
+import styles from './JourneyScreen.module.css';
 
 function JourneyScreen({routeId, onComplete, onBack }) {
   const [phase, setPhase] = useState('beforeStart'); // 'beforeStart' | 'readyToStart' | 'tracking'
   const [position, setPosition] = useState(null);
   const [passedIds, setPassedIds] = useState([]);
-  console.log('routeId:', routeId);
 
-  const route = routeMap[routeId];
-  const startPoint = route.checkPoints[0].geometry.coordinates;
-  console.log('route:', route);
+  const route = routeMap.find((route) => route.id === routeId);
+  const startPoint = [route.checkPoints[0].coordinates[1], route.checkPoints[0].coordinates[0]] ;
+
+
   useEffect(() => {
     const watchId = navigator.geolocation.watchPosition(
       (pos) => {
@@ -42,8 +43,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
 
 
   function checkArrivalAtStart(coords) {
-    const [startLng, startLat] = route.geoJson.features[0].geometry.coordinates[0];
-    const distance = getDistance(coords, [startLat, startLng]);
+    const distance = getDistance(coords, startPoint);
 
     if (distance < 30) {
       setPhase('readyToStart');
@@ -76,17 +76,17 @@ function JourneyScreen({routeId, onComplete, onBack }) {
   const handleStart = () => setPhase('tracking');
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>{route.name}</h2>
+    <div className={styles.container}>
+      {/* <h2>{route.name}</h2>
       <p>Расстояние {route.distance}km</p>
-      <button onClick={onBack}>Back</button>
+      <button onClick={onBack}>Back</button> */}
       {phase === 'beforeStart' && (
       <>
-        <p>Доберитесь до стартовой точки</p>
         <MapView
         route={route}
         userPosition={position}
         startPoint={startPoint}
+        phase='toStart'
         />
       </>
       )}

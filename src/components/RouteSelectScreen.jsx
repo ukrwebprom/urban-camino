@@ -3,7 +3,6 @@ import RouteSketch from '../utils/RouteSketch';
 import styles from './RouteSelectScreen.module.css';
 import logo from '../assets/logo.png';
 
-console.log(routeMap);
 function RouteSelectScreen({ onSelect, onBack }) {
   return (
     <>
@@ -20,7 +19,7 @@ function RouteSelectScreen({ onSelect, onBack }) {
                     <div className={styles.routeInfo}>
                       <RouteSketch route = {route.coordinates}
                       checkpoints={route.checkPoints.map((point) => (point.coordinates))} 
-                      classname={styles.routeMap} />
+                      className={styles.routeMap} />
                       <div className={styles.routeData}>
                         <div className={styles.startFinish}>
                           <h4>Start</h4>

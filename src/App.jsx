@@ -37,7 +37,6 @@ function App() {
         onBack={()=> setStep('home')} />}
       {step === 'journey' && (
         <>
-        {console.log('selectedRouteId (App):', selectedRouteId)}
         <JourneyScreen 
         key={selectedRouteId}
         routeId={selectedRouteId} 

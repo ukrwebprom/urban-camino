@@ -1,17 +1,8 @@
-import { MapContainer, TileLayer, Marker, Popup, GeoJSON, CircleMarker, Circle, Polyline, useMap } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-// import { routeGeoJson, checkPoints } from '../routes/padawan';
-import UserMarker from './UserMarker';
+import { useMap, MapContainer, TileLayer, Marker, Polyline, CircleMarker } from 'react-leaflet';
 import { useEffect } from 'react';
+import styles from './MapView.module.css';
 
-const routeStyle = {
-  color: '#ffcc00',      // цвет линии
-  weight: 5,             // толщина
-  opacity: 1,          // прозрачность
-  //dashArray: '5, 5',     // пунктир (если нужно)
-  lineJoin: 'round'      // скругление углов
-};
-
+  // ⏱ FitBounds при фазе "toStart"
 function FitBounds({ pos1, pos2 }) {
   const map = useMap();
 
@@ -26,46 +17,78 @@ function FitBounds({ pos1, pos2 }) {
   return null;
 }
 
-function MapView({ route, userPosition, startPoint, passedCheckpoints = [] }) {
-  const routeCoords = route.geoJson.features[0].geometry.coordinates.map(
-    ([lng, lat]) => [lat, lng]
+function isValidCoord(coord) {
+  return (
+    Array.isArray(coord) &&
+    coord.length === 2 &&
+    typeof coord[0] === 'number' &&
+    typeof coord[1] === 'number' &&
+    !isNaN(coord[0]) &&
+    !isNaN(coord[1])
   );
+}
 
+function MapView({ route, userPosition, startPoint, phase }) {
+
+  if (!route?.coordinates || !route?.checkPoints) return null;
+
+  const routeCoords = route.coordinates.map(([lng, lat]) => [lat, lng]);
+  const checkPointCoords = route.checkPoints.map(p => [p.coordinates[1], p.coordinates[0]]);
++
+
+//   useEffect(() => {
+//     if (phase === 'toStart' && userPosition && startPoint) {
+//       map.fitBounds([userPosition, startPoint], {
+//         padding: [50, 50],
+//         maxZoom: 17,
+//       });
+//     }
+//   }, [phase, userPosition, startPoint, map]);
+console.log('startPoint:',startPoint);
+console.log('userPosition:',userPosition);
   return (
     <MapContainer
-      center={userPosition || [startPoint[1], startPoint[0]]}
+      center={startPoint}
       zoom={15}
-      style={{ height: '400px', width: '100%' }}
+      className={styles.map}
     >
-      {/* <TileLayer
+      <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      /> */}
-<TileLayer
-  url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
-  attribution='&copy; Stadia Maps, OpenMapTiles & OpenStreetMap'
-/>
+      />
 
-      {userPosition && (
-        <Marker position={userPosition} />
-      )}
+      {/* Положение пользователя */}
+{isValidCoord(userPosition) && (
+  <CircleMarker
+    center={userPosition}
+    radius={8}
+    pathOptions={{ color: 'white', fillColor: 'blue', fillOpacity: 1, weight: 2 }}
+  />
+)}
 
-      {startPoint && (
-        <Circle
-          center={[startPoint[1], startPoint[0]]}
-          radius={30}
-          pathOptions={{ color: 'blue', fillColor: 'lightblue', fillOpacity: 0.4 }}
-        />
-      )}
+{/* Стартовая точка */}
+{startPoint && (
+  <CircleMarker
+    center={startPoint}
+    radius={8}
+    pathOptions={{ color: 'yellow', fillColor: 'black', fillOpacity: 1, weight: 2 }}
+  />
+)}
 
-      {userPosition && startPoint && (
+      {isValidCoord(userPosition) && startPoint && (
         <FitBounds
         pos1={userPosition}
-        pos2={[startPoint[1], startPoint[0]]} // lat, lng
+        pos2={[startPoint[0], startPoint[1]]} // lat, lng
         />
       )}
 
-      {routeCoords && (
-        <Polyline positions={routeCoords} color="black" />
+      {/* Маршрут и чекпойнты — только в фазе "onRoute" */}
+      {phase === 'onRoute' && (
+        <>
+          <Polyline positions={routeCoords} color="yellow" weight={4} />
+          {checkPointCoords.map((pos, i) => (
+            <CircleMarker key={i} center={pos} radius={6} pathOptions={{ color: 'white', fillColor: 'black', weight: 2 }} />
+          ))}
+        </>
       )}
     </MapContainer>
   );

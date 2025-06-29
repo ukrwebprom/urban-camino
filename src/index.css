@@ -6,6 +6,16 @@ body {
   margin:0;
   padding:0;
 }
+
+/* App.css */
+.leaflet-container {
+  background: black;
+}
+
+.leaflet-tile-pane {
+  filter: grayscale(1) brightness(0.6);
+}
+
 /* :root {
   font-family: Montserrat, sans-serif;
   line-height: 1.5;
