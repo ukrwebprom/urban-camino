@@ -85,7 +85,7 @@
 }
 .distance {
     font-family: inherit;
-    font-size: 26px;
+    font-size: 46px;
     font-weight: 600;
     padding:0;
     margin:0;
@@ -111,7 +111,7 @@
     border-radius: 8px;
     position:absolute;
     bottom:10px;
-    right:0;
+    right:10px;
     z-index:10;
 }
 @media screen and (min-width: 800px) {
