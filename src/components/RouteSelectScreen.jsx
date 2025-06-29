@@ -1,15 +1,12 @@
 import routeMap from '../routes';
 import RouteSketch from '../utils/RouteSketch';
 import styles from './RouteSelectScreen.module.css';
-import logo from '../assets/logo.png';
+import TopPanel from './TopPanel';
 
 function RouteSelectScreen({ onSelect, onBack }) {
   return (
     <>
-    <div className={styles.topPanel}>
-      <h1 className={styles.topPanelTitle}>Routes</h1>
-      <img src={logo} alt="Urban Camino Logo" className={styles.logo} />
-    </div>
+    <TopPanel />
     <div className={styles.container}>
         {
             routeMap.map((route) => (

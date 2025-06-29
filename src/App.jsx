@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
-import MapView from './components/MapView';
-import ControlPanel from './components/ControlPanel';
 import HomeScreen from './components/HomeScreen';
 import RouteSelectScreen from './components/RouteSelectScreen';
 import JourneyScreen from './components/JourneyScreen';
 import FinishScreen from './components/FinishScreen';
+import styles from './App.module.css';
 
 function App() {
   const [step, setStep] = useState('home');
@@ -27,7 +26,7 @@ function App() {
   }, [selectedRouteId]);
   
   return (
-    <div style={{ height: "100vh", width: "100vw" }}>
+    <div className={styles.main}>
       {step === 'home' && <HomeScreen onNext={() => setStep('select')} />}
       {step === 'select' && <RouteSelectScreen 
         onSelect={(routeId) => {

@@ -45,7 +45,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
   function checkArrivalAtStart(coords) {
     const distance = getDistance(coords, startPoint);
 
-    if (distance < 30) {
+    if (distance < 10) {
       setPhase('readyToStart');
     }
   }
@@ -88,6 +88,10 @@ function JourneyScreen({routeId, onComplete, onBack }) {
         startPoint={startPoint}
         phase='toStart'
         />
+        <div className={styles.uiOverlay}>
+          <h2>Двигайтесь к стартовой точке</h2>
+          <p>Осталось 120 м</p>
+        </div>
       </>
       )}
 
