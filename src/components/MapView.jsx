@@ -4,6 +4,7 @@ import flag from '../assets/start.svg';
 import user from '../assets/user-location.svg';
 import { useEffect } from 'react';
 import styles from './MapView.module.css';
+import DrawArrowLine from '../utils/drawArrowLine';
 
 const startIcon = L.icon({
   iconUrl: flag, // путь к иконке
@@ -86,6 +87,10 @@ console.log('userPosition:',userPosition);
   <>
   <Marker position={startPoint} icon={startIcon} />
   </>
+)}
+
+{userPosition && startPoint && (
+  <DrawArrowLine from={userPosition} to={startPoint} />
 )}
 
       {isValidCoord(userPosition) && startPoint && (

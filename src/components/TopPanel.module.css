@@ -7,7 +7,7 @@
     display:flex;
     justify-content: space-between;
     align-items: center;
-    padding:10px;
+    padding:20px;
     box-sizing: border-box;
     background-color: black;
     z-index: 2000;
@@ -15,8 +15,8 @@
 .topPanelTitle {
     font-family: inherit;
     color:white;
-    font-size: 25px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 800;
 }
 .logo {
     width:50px;
