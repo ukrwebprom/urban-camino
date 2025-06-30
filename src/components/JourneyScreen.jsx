@@ -6,7 +6,7 @@ import styles from './JourneyScreen.module.css';
 import TopPanel from './TopPanel';
 
 function JourneyScreen({routeId, onComplete, onBack }) {
-  const [phase, setPhase] = useState('beforeStart'); // 'beforeStart' | 'readyToStart' | 'tracking'
+  const [phase, setPhase] = useState('readyToStart'); // 'beforeStart' | 'readyToStart' | 'tracking'
   const [position, setPosition] = useState(null);
   const [passedIds, setPassedIds] = useState([]);
 
@@ -46,7 +46,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
   function checkArrivalAtStart(coords) {
     const distance = getDistance(coords, startPoint);
 
-    if (distance < 10) {
+    if (distance < 30) {
       setPhase('readyToStart');
     }
   }
@@ -88,6 +88,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
         userPosition={position}
         startPoint={startPoint}
         phase={phase}
+        passedIds={passedIds}
       />
       {phase === 'beforeStart' && (
         <div className={styles.uiOverlay}>

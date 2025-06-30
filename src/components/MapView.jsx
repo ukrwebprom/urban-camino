@@ -44,12 +44,19 @@ function isValidCoord(coord) {
   );
 }
 
-function MapView({ route, userPosition, startPoint, phase }) {
+function MapView({ route, userPosition, startPoint, phase, passedIds }) {
 
   if (!route?.coordinates || !route?.checkPoints) return null;
-
   const routeCoords = route.coordinates.map(([lng, lat]) => [lat, lng]);
-  const checkPointCoords = route.checkPoints.map(p => [p.coordinates[1], p.coordinates[0]]);
+  const checkPoints = route.checkPoints.map(p => 
+    {
+      return {
+        id: p.id, 
+        name: p.name,
+        coordinates: [p.coordinates[1], p.coordinates[0]]
+      }
+    }
+  );
 
   return (
     <MapContainer
@@ -75,12 +82,15 @@ function MapView({ route, userPosition, startPoint, phase }) {
       )}
 
       {/* Маршрут и чекпойнты — только в фазе "onRoute" */}
-      {phase === 'readyToStart' && (
+      {(phase === 'readyToStart' || phase === 'tracking') && (
         <>
           <Polyline positions={routeCoords} color="yellow" weight={4} />
-          {checkPointCoords.map((pos, i) => (
-            <CircleMarker key={i} center={pos} radius={6} pathOptions={{ color: 'white', fillColor: 'black', weight: 2 }} />
-          ))}
+          {checkPoints.map((pos, i) => {
+              return passedIds.includes(pos.id) ? 
+              (<CircleMarker key={i} center={pos.coordinates} radius={6} pathOptions={{ color: 'yellow', fillColor: 'yellow', fillOpacity: 1, weight: 4 }} />) :
+              (<CircleMarker key={i} center={pos.coordinates} radius={6} pathOptions={{ color: 'yellow', fillColor: '#999', fillOpacity: 1, weight: 4 }} />)
+              }
+          )}
         </>
       )}
     </MapContainer>
