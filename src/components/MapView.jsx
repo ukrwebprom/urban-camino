@@ -50,18 +50,7 @@ function MapView({ route, userPosition, startPoint, phase }) {
 
   const routeCoords = route.coordinates.map(([lng, lat]) => [lat, lng]);
   const checkPointCoords = route.checkPoints.map(p => [p.coordinates[1], p.coordinates[0]]);
-+
 
-//   useEffect(() => {
-//     if (phase === 'toStart' && userPosition && startPoint) {
-//       map.fitBounds([userPosition, startPoint], {
-//         padding: [50, 50],
-//         maxZoom: 17,
-//       });
-//     }
-//   }, [phase, userPosition, startPoint, map]);
-console.log('startPoint:',startPoint);
-console.log('userPosition:',userPosition);
   return (
     <MapContainer
       center={startPoint}
@@ -72,26 +61,11 @@ console.log('userPosition:',userPosition);
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      {/* Положение пользователя */}
-{isValidCoord(userPosition) && (
-  // <CircleMarker
-  //   center={userPosition}
-  //   radius={8}
-  //   pathOptions={{ color: 'white', fillColor: 'blue', fillOpacity: 1, weight: 2 }}
-  // />
-  <Marker position={userPosition} icon={userIcon} />
-)}
+      {isValidCoord(userPosition) && (<Marker position={userPosition} icon={userIcon} />)}
 
-{/* Стартовая точка */}
-{startPoint && (
-  <>
-  <Marker position={startPoint} icon={startIcon} />
-  </>
-)}
+      {startPoint && (<Marker position={startPoint} icon={startIcon} />)}
 
-{userPosition && startPoint && (
-  <DrawArrowLine from={userPosition} to={startPoint} />
-)}
+      {phase === 'beforeStart' && userPosition && startPoint && (<DrawArrowLine from={userPosition} to={startPoint} />)}
 
       {isValidCoord(userPosition) && startPoint && (
         <FitBounds
@@ -101,7 +75,7 @@ console.log('userPosition:',userPosition);
       )}
 
       {/* Маршрут и чекпойнты — только в фазе "onRoute" */}
-      {phase === 'onRoute' && (
+      {phase === 'readyToStart' && (
         <>
           <Polyline positions={routeCoords} color="yellow" weight={4} />
           {checkPointCoords.map((pos, i) => (

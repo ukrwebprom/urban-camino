@@ -83,19 +83,17 @@ function JourneyScreen({routeId, onComplete, onBack }) {
       {/* <h2>{route.name}</h2>
       <p>Расстояние {route.distance}km</p>
       <button onClick={onBack}>Back</button> */}
-      {phase === 'beforeStart' && (
-      <>
-        <MapView
+      <MapView
         route={route}
         userPosition={position}
         startPoint={startPoint}
-        phase='toStart'
-        />
+        phase={phase}
+      />
+      {phase === 'beforeStart' && (
         <div className={styles.uiOverlay}>
           <h2>Двигайтесь к стартовой точке</h2>
           <p>Осталось 120 м</p>
         </div>
-      </>
       )}
 
       {phase === 'readyToStart' && (
@@ -106,7 +104,11 @@ function JourneyScreen({routeId, onComplete, onBack }) {
       )}
 
       {phase === 'tracking' && (
-        <MapView route={route} userPosition={position} onFinish={onComplete} />
+        <div>
+        <p>Вы на старте. Готовы начать путь?</p>
+        <button onClick={handleStart}>Начать путь</button>
+      </div>
+        // <MapView route={route} userPosition={position} onFinish={onComplete} />
       )}      
     </div>
     </>
