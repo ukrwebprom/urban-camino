@@ -3,6 +3,7 @@ import MapView from './MapView';
 import routeMap from '../routes';
 import getDistance from '../utils/getDistance';
 import styles from './JourneyScreen.module.css';
+import TopPanel from './TopPanel';
 
 function JourneyScreen({routeId, onComplete, onBack }) {
   const [phase, setPhase] = useState('beforeStart'); // 'beforeStart' | 'readyToStart' | 'tracking'
@@ -76,6 +77,8 @@ function JourneyScreen({routeId, onComplete, onBack }) {
   const handleStart = () => setPhase('tracking');
 
   return (
+    <>
+    <TopPanel title={route.name} />
     <div className={styles.container}>
       {/* <h2>{route.name}</h2>
       <p>Расстояние {route.distance}km</p>
@@ -106,6 +109,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
         <MapView route={route} userPosition={position} onFinish={onComplete} />
       )}      
     </div>
+    </>
   );
 }
 

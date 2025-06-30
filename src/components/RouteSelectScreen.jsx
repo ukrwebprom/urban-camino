@@ -6,7 +6,7 @@ import TopPanel from './TopPanel';
 function RouteSelectScreen({ onSelect, onBack }) {
   return (
     <>
-    <TopPanel />
+    <TopPanel title={'Routes'} />
     <div className={styles.container}>
         {
             routeMap.map((route) => (
