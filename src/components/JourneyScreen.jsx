@@ -4,6 +4,7 @@ import routeMap from '../routes';
 import getDistance from '../utils/getDistance';
 import styles from './JourneyScreen.module.css';
 import TopPanel from './TopPanel';
+import MoveToStartLabel from './MoveToStartLabel';
 
 function JourneyScreen({routeId, onComplete, onBack }) {
   const [phase, setPhase] = useState('beforeStart'); // 'beforeStart' | 'readyToStart' | 'tracking'
@@ -80,9 +81,6 @@ function JourneyScreen({routeId, onComplete, onBack }) {
     <>
     <TopPanel title={route.name} />
     <div className={styles.container}>
-      {/* <h2>{route.name}</h2>
-      <p>Расстояние {route.distance}km</p>
-      <button onClick={onBack}>Back</button> */}
       <MapView
         route={route}
         userPosition={position}
@@ -92,8 +90,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
       />
       {phase === 'beforeStart' && (
         <div className={styles.uiOverlay}>
-          <h2>Двигайтесь к стартовой точке</h2>
-          <p>Осталось 120 м</p>
+          <MoveToStartLabel addr={'Kolontaevskaja 22'} />
         </div>
       )}
 
