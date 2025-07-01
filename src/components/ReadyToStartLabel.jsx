@@ -8,7 +8,7 @@ function ReadyToStartLabel({handleStart}) {
             <div className={styles.labelContent}>
                 <h4>You're at the start. </h4>
                 <p>Ready to begin your journey?</p>
-                <button onClick={handleStart}>Start the journey</button>
+                <button onClick={() => handleStart()}>Start the journey</button>
             </div>
         </div>
     )

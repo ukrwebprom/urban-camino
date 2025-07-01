@@ -55,10 +55,10 @@ function JourneyScreen({routeId, onComplete, onBack }) {
 
   function checkPassedCheckpoints(coords) {
     route.checkPoints.forEach((point) => {
-      const id = point.properties.id;
+      const id = point.id;
       if (passedIds.includes(id)) return;
 
-      const [lng, lat] = point.geometry.coordinates;
+      const [lng, lat] = point.coordinates;
       const dist = getDistance(coords, [lat, lng]);
 
       if (dist < 30) {
@@ -97,16 +97,14 @@ function JourneyScreen({routeId, onComplete, onBack }) {
 
       {phase === 'readyToStart' && (
         <div className={styles.uiOverlay}>
-        <ReadyToStartLabel handleStart={() => handleStart} />
-      </div>
+          <ReadyToStartLabel handleStart={handleStart} />
+        </div>
       )}
 
       {phase === 'tracking' && (
-        <div>
-        <p>Вы на старте. Готовы начать путь?</p>
-        <button onClick={handleStart}>Начать путь</button>
+        <div className={styles.uiOverlay}>
+        <p>tracking</p>
       </div>
-        // <MapView route={route} userPosition={position} onFinish={onComplete} />
       )}      
     </div>
     </>
