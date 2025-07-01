@@ -82,6 +82,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
     <>
     <TopPanel title={route.name} />
     <div className={styles.container}>
+
       <MapView
         route={route}
         userPosition={position}

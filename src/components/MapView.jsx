@@ -18,6 +18,12 @@ const userIcon = L.icon({
   iconAnchor: [32, 64],              // точка "указания" — нижний край
 });
 
+function UserToCenter({pos}) {
+  console.log(pos);
+  const map = useMap();
+  map.setView(pos, map.getZoom());
+}
+
   // ⏱ FitBounds при фазе "toStart"
 function FitBounds({ pos1, pos2 }) {
   const map = useMap();
@@ -74,11 +80,18 @@ function MapView({ route, userPosition, startPoint, phase, passedIds }) {
 
       {phase === 'beforeStart' && userPosition && startPoint && (<DrawArrowLine from={userPosition} to={startPoint} />)}
 
-      {isValidCoord(userPosition) && startPoint && (
+      {isValidCoord(userPosition) && startPoint && (phase === 'readyToStart' || phase === 'beforeStart') && (
         <FitBounds
         pos1={userPosition}
         pos2={[startPoint[0], startPoint[1]]} // lat, lng
         />
+      )}
+
+      {phase === 'tracking' && isValidCoord(userPosition)&& (
+        <>
+        {console.log(userPosition)};
+        <UserToCenter pos = {userPosition} />
+        </>
       )}
 
       {/* Маршрут и чекпойнты — только в фазе "onRoute" */}
