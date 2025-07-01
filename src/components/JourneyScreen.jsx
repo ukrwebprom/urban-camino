@@ -8,7 +8,7 @@ import MoveToStartLabel from './MoveToStartLabel';
 import ReadyToStartLabel from './ReadyToStartLabel';
 
 function JourneyScreen({routeId, onComplete, onBack }) {
-  const [phase, setPhase] = useState('readyToStart'); // 'beforeStart' | 'readyToStart' | 'tracking'
+  const [phase, setPhase] = useState('beforeStart'); // 'beforeStart' | 'readyToStart' | 'tracking'
   const [position, setPosition] = useState(null);
   const [passedIds, setPassedIds] = useState([]);
 
