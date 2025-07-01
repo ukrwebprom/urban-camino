@@ -5,9 +5,10 @@ import getDistance from '../utils/getDistance';
 import styles from './JourneyScreen.module.css';
 import TopPanel from './TopPanel';
 import MoveToStartLabel from './MoveToStartLabel';
+import ReadyToStartLabel from './ReadyToStartLabel';
 
 function JourneyScreen({routeId, onComplete, onBack }) {
-  const [phase, setPhase] = useState('beforeStart'); // 'beforeStart' | 'readyToStart' | 'tracking'
+  const [phase, setPhase] = useState('readyToStart'); // 'beforeStart' | 'readyToStart' | 'tracking'
   const [position, setPosition] = useState(null);
   const [passedIds, setPassedIds] = useState([]);
 
@@ -90,15 +91,14 @@ function JourneyScreen({routeId, onComplete, onBack }) {
       />
       {phase === 'beforeStart' && (
         <div className={styles.uiOverlay}>
-          <MoveToStartLabel addr={'Kolontaevskaja 22'} />
+          <MoveToStartLabel addr={route.start} />
         </div>
       )}
 
       {phase === 'readyToStart' && (
-        <div>
-          <p>Вы на старте. Готовы начать путь?</p>
-          <button onClick={handleStart}>Начать путь</button>
-        </div>
+        <div className={styles.uiOverlay}>
+        <ReadyToStartLabel handleStart={() => handleStart} />
+      </div>
       )}
 
       {phase === 'tracking' && (

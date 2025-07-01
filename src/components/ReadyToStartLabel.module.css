@@ -1,0 +1,41 @@
+.main {
+    position:absolute;
+    bottom:20px;
+    background-color: #F6FF00;
+    padding:0px 25px 10px 25px;
+    border-radius: 10px;
+    display:flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
+.shell {
+    position:absolute;
+    top:-40px;
+    z-index:10;
+}
+
+.labelContent {
+    position:relative;
+    z-index:100;
+    text-align: center;
+    margin-top: 45px;
+}
+
+.labelContent > h4, p {
+    margin:0;
+}
+
+.labelContent > button {
+    margin: 15px;
+    background-color: black;
+    font-family: inherit;
+    color:white;
+    font-size: 13px;
+    text-transform: uppercase;
+    padding:10px 15px;
+    border-radius: 10px;
+    border:0;
+}
+
