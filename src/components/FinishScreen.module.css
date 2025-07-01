@@ -1,0 +1,11 @@
+.main {
+    position: relative;
+    width: 100%;
+    height: calc(var(--vh, 1vh) * 100);
+    overflow: hidden;
+    background-color: #F6FF00;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
