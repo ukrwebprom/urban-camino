@@ -97,11 +97,11 @@ function MapView({ route, userPosition, startPoint, phase, passedIds }) {
       {/* Маршрут и чекпойнты — только в фазе "onRoute" */}
       {(phase === 'readyToStart' || phase === 'tracking') && (
         <>
-          <Polyline positions={routeCoords} color="yellow" weight={4} />
+          <Polyline positions={routeCoords} color="#F6FF00" weight={8} />
           {checkPoints.map((pos, i) => {
               return passedIds.includes(pos.id) ? 
-              (<CircleMarker key={i} center={pos.coordinates} radius={6} pathOptions={{ color: 'yellow', fillColor: 'yellow', fillOpacity: 1, weight: 4 }} />) :
-              (<CircleMarker key={i} center={pos.coordinates} radius={6} pathOptions={{ color: 'yellow', fillColor: '#999', fillOpacity: 1, weight: 4 }} />)
+              (<CircleMarker key={i} center={pos.coordinates} radius={8} pathOptions={{ color: '#F6FF00', fillColor: 'yellow', fillOpacity: 1, weight: 4 }} />) :
+              (<CircleMarker key={i} center={pos.coordinates} radius={8} pathOptions={{ color: '#F6FF00', fillColor: '#999', fillOpacity: 1, weight: 4 }} />)
               }
           )}
         </>
