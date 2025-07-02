@@ -8,9 +8,6 @@
 }
 
 .trackingLabel {
-    position: absolute;
-    bottom: 10px;
-    left:10px;
     animation: blink-animation 1s steps(2, start) infinite;
     background-color: #F6FF00;
     padding:5px;

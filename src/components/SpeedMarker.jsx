@@ -1,13 +1,16 @@
 import styles from './SpeedMarker.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import getDistanceFromLatLonInKm from '../utils/getDistanceFromLatLonInKm';
+import TrackingUI from './TrackingUI';
 
 function SpeedMarker({userPosition}) {
 
     const [prevData, setPrevData] = useState(null);
     const [speedHistory, setSpeedHistory] = useState([]);
     const [speedWarning, setSpeedWarning] = useState(false);
-const [speed, setSpeed] = useState(0);
+    const [speed, setSpeed] = useState(0);
+    const [lastUpdateTime, setLastUpdateTime] = useState(Date.now());
+    const idleTimeout = useRef(null);
 
 function median(arr) {
     const sorted = [...arr].sort((a, b) => a - b);
@@ -21,19 +24,31 @@ function median(arr) {
     if (!userPosition) return;
   
     const now = Date.now();
+    setLastUpdateTime(now);
+  
+    // Очистить старый таймер
+    if (idleTimeout.current) clearTimeout(idleTimeout.current);
+  
+    // Новый таймер: если за 12 секунд не было движения — сбросить скорость
+    idleTimeout.current = setTimeout(() => {
+      console.log('⏱ Нет движения — сбрасываем скорость');
+      setSpeedHistory([]);
+      setSpeedWarning(false);
+    }, 12000);
   
     if (prevData) {
-      const dt = (now - prevData.time) / 1000; // секунды
+      const dt = (now - prevData.time) / 1000;
       if (dt < 5) return;
   
-      const distance = getDistanceFromLatLonInKm(
+      const dist = getDistanceFromLatLonInKm(
         prevData.pos[0], prevData.pos[1],
         userPosition[0], userPosition[1]
       );
   
-      if (distance < 0.005) return; // менее 5 метров — шум
-      const speed = (distance / dt) * 3600; // км/ч
-      if (speed > 20) return; // скачок
+      if (dist < 0.005) return;
+  
+      const speed = (dist / dt) * 3600;
+      if (speed > 20) return;
   
       const updated = [...speedHistory.slice(-4), speed];
       setSpeedHistory(updated);
@@ -51,6 +66,7 @@ function median(arr) {
     return (
             <div className={styles.speedOmeter}>
                 <p>{speed}<span>km/h</span></p>
+                <TrackingUI />
             </div>
     )   
 }
