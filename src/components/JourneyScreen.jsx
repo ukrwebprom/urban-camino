@@ -9,7 +9,7 @@ import ReadyToStartLabel from './ReadyToStartLabel';
 import SpeedMarker from './SpeedMarker';
 
 function JourneyScreen({routeId, onComplete, onBack }) {
-  const [phase, setPhase] = useState('tracking'); // 'beforeStart' | 'readyToStart' | 'tracking'
+  const [phase, setPhase] = useState('beforeStart'); // 'beforeStart' | 'readyToStart' | 'tracking'
   const [position, setPosition] = useState(null);
   const [passedIds, setPassedIds] = useState([]);
   const [speed, setSpeed] = useState(null);
