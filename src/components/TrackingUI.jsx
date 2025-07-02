@@ -1,14 +1,14 @@
 import styles from './TrackingUI.module.css';
 function TrackingUI () {
     return (
-        <div className={styles.main}>
+        <>
             <div className={styles.trackingLabel}>
                 <p>tracking</p>
             </div>
-            <div>
-                <p>Speed</p>
+            <div className={styles.speedOmeter}>
+                <p>10<span>km/h</span></p>
             </div>
-        </div>
+        </>
     )   
 }
 

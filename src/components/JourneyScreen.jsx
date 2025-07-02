@@ -7,6 +7,7 @@ import TopPanel from './TopPanel';
 import MoveToStartLabel from './MoveToStartLabel';
 import ReadyToStartLabel from './ReadyToStartLabel';
 import TrackingUI from './TrackingUI';
+import SpeedMarker from './SpeedMarker';
 
 function JourneyScreen({routeId, onComplete, onBack }) {
   const [phase, setPhase] = useState('beforeStart'); // 'beforeStart' | 'readyToStart' | 'tracking'
@@ -106,6 +107,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
       {phase === 'tracking' && (
         <div className={styles.uiOverlay}>
           <TrackingUI />
+          <SpeedMarker userPosition={position} />
       </div>
       )}      
     </div>

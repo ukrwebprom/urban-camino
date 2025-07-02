@@ -1,0 +1,15 @@
+.speedOmeter {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    color: white;
+  }
+  
+  .speedOmeter > p {
+    font-family: inherit;
+    font-size: 36px;
+  }
+  
+  .speedOmeter span {
+    font-size: 14px;
+  }
