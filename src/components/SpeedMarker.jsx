@@ -38,10 +38,10 @@ function median(arr) {
            userPosition[0], userPosition[1]
            );
   
-           const speed = (dist / dt) * 3600;
+           const sp = (dist / dt) * 3600;
 
-           console.log('speed:', speed);
-           setSpeed(speed);
+           console.log('speed:', sp);
+           setSpeed(sp);
 
          }
 
