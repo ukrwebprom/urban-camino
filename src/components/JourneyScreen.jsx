@@ -12,6 +12,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
   const [phase, setPhase] = useState('tracking'); // 'beforeStart' | 'readyToStart' | 'tracking'
   const [position, setPosition] = useState(null);
   const [passedIds, setPassedIds] = useState([]);
+  const [speed, setSpeed] = useState(0);
 
   const route = routeMap.find((route) => route.id === routeId);
   const startPoint = [route.checkPoints[0].coordinates[1], route.checkPoints[0].coordinates[0]] ;
@@ -22,7 +23,8 @@ function JourneyScreen({routeId, onComplete, onBack }) {
       (pos) => {
         const coords = [pos.coords.latitude, pos.coords.longitude];
         setPosition(coords);
-
+        const speed = pos.coords.speed;
+        setSpeed(speed);
         handlePhaseLogic(phase, coords);
       },
       (err) => console.error('Geo error:', err),
@@ -105,7 +107,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
 
       {phase === 'tracking' && (
         <div className={styles.uiOverlay}>
-          <SpeedMarker userPosition={position} />
+          <SpeedMarker speed={speed} />
       </div>
       )}      
     </div>
