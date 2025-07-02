@@ -45,7 +45,7 @@ function median(arr) {
            );
   
            const sp = (dist / dt) * 3600;
-           setSpeed(sp);
+           setSpeed(sp.toFixed(2));
 
          }
 
