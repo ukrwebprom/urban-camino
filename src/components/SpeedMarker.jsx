@@ -34,7 +34,8 @@ function median(arr) {
       console.log('⏱ Нет движения — сбрасываем скорость');
       setSpeedHistory([]);
       setSpeedWarning(false);
-    }, 12000);
+      setSpeed(0);
+    }, 5000);
   
     if (prevData) {
       const dt = (now - prevData.time) / 1000;
