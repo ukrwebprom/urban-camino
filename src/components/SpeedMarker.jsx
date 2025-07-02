@@ -21,47 +21,89 @@ function median(arr) {
   }
 
   useEffect(() => {
-    if (!userPosition) return;
+    const intervalId = setInterval(() => {
+        console.log('interval set');
+        if (!userPosition) return;
+
+        const now = Date.now();
+        setLastUpdateTime(now);
+        if (prevData) {
+           const dt = (now - prevData.time) / 1000;
+           if (dt < 5) return;
   
-    const now = Date.now();
-    setLastUpdateTime(now);
+           const dist = getDistanceFromLatLonInKm(
+           prevData.pos[0], prevData.pos[1],
+           userPosition[0], userPosition[1]
+           );
   
-    // Очистить старый таймер
-    if (idleTimeout.current) clearTimeout(idleTimeout.current);
+           //if (dist < 0.005) return;
   
-    // Новый таймер: если за 12 секунд не было движения — сбросить скорость
-    idleTimeout.current = setTimeout(() => {
-      console.log('⏱ Нет движения — сбрасываем скорость');
-      setSpeedHistory([]);
-      setSpeedWarning(false);
-      setSpeed(0);
-    }, 5000);
+           const speed = (dist / dt) * 3600;
+           //if (speed > 20) return;
+           setSpeed(speed.toFixed(2));
   
-    if (prevData) {
-      const dt = (now - prevData.time) / 1000;
-      if (dt < 5) return;
+//       const updated = [...speedHistory.slice(-4), speed];
+//       setSpeedHistory(updated);
   
-      const dist = getDistanceFromLatLonInKm(
-        prevData.pos[0], prevData.pos[1],
-        userPosition[0], userPosition[1]
-      );
+//       const medSpeed = median(updated);
+//       console.log(`Медианная скорость: ${medSpeed.toFixed(2)} км/ч`);
+//       setSpeed(medSpeed.toFixed(2));
+//       setSpeedWarning(medSpeed > 7);
+         }
+
+        setPrevData({ pos: userPosition, time: now });
+
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+      console.log('интервал очищен');
+    };
+  }, []);
+
+
+//   useEffect(() => {
+//     if (!userPosition) return;
   
-      if (dist < 0.005) return;
+//     const now = Date.now();
+//     setLastUpdateTime(now);
   
-      const speed = (dist / dt) * 3600;
-      if (speed > 20) return;
+//     // Очистить старый таймер
+//     if (idleTimeout.current) clearTimeout(idleTimeout.current);
   
-      const updated = [...speedHistory.slice(-4), speed];
-      setSpeedHistory(updated);
+//     // Новый таймер: если за 12 секунд не было движения — сбросить скорость
+//     idleTimeout.current = setTimeout(() => {
+//       console.log('⏱ Нет движения — сбрасываем скорость');
+//       setSpeedHistory([]);
+//       setSpeedWarning(false);
+//       setSpeed(0);
+//     }, 5000);
   
-      const medSpeed = median(updated);
-      console.log(`Медианная скорость: ${medSpeed.toFixed(2)} км/ч`);
-      setSpeed(medSpeed.toFixed(2));
-      setSpeedWarning(medSpeed > 7);
-    }
+//     if (prevData) {
+//       const dt = (now - prevData.time) / 1000;
+//       if (dt < 5) return;
   
-    setPrevData({ pos: userPosition, time: now });
-  }, [userPosition]);
+//       const dist = getDistanceFromLatLonInKm(
+//         prevData.pos[0], prevData.pos[1],
+//         userPosition[0], userPosition[1]
+//       );
+  
+//       if (dist < 0.005) return;
+  
+//       const speed = (dist / dt) * 3600;
+//       if (speed > 20) return;
+  
+//       const updated = [...speedHistory.slice(-4), speed];
+//       setSpeedHistory(updated);
+  
+//       const medSpeed = median(updated);
+//       console.log(`Медианная скорость: ${medSpeed.toFixed(2)} км/ч`);
+//       setSpeed(medSpeed.toFixed(2));
+//       setSpeedWarning(medSpeed > 7);
+//     }
+  
+//     setPrevData({ pos: userPosition, time: now });
+//   }, [userPosition]);
 
 
     return (
