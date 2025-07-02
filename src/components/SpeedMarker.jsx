@@ -5,6 +5,8 @@ import TrackingUI from './TrackingUI';
 
 function SpeedMarker({userPosition}) {
 
+    const userPositionRef = useRef(userPosition);
+
     const [prevData, setPrevData] = useState(null);
     const prevDataRef = useRef(null);
     const [speedHistory, setSpeedHistory] = useState([]);
@@ -20,32 +22,34 @@ function median(arr) {
       ? (sorted[mid - 1] + sorted[mid]) / 2
       : sorted[mid];
   }
+  useEffect(() => {
+    userPositionRef.current = userPosition;
+  }, [userPosition]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-        console.log('interval set');
-        if (!userPosition) return;
+
+        const currentPos = userPositionRef.current;
+
+        if (!currentPos) return;
 
         const now = Date.now();
         const prevData = prevDataRef.current;
 
         if (prevData) {
-            console.log('actions');
            const dt = (now - prevData.time) / 1000;
   
            const dist = getDistanceFromLatLonInKm(
            prevData.pos[0], prevData.pos[1],
-           userPosition[0], userPosition[1]
+           currentPos[0], currentPos[1]
            );
   
            const sp = (dist / dt) * 3600;
-
-           console.log('speed:', sp);
            setSpeed(sp);
 
          }
 
-         prevDataRef.current = { pos: userPosition, time: now };
+         prevDataRef.current = { pos: currentPos, time: now };
 
     }, 1000);
 
