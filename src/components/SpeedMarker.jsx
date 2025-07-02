@@ -113,7 +113,7 @@ function SpeedMarker({speed}) {
 
     return (
             <div className={styles.speedOmeter}>
-                {speed && (<p>{speed.toFixed(2)}<span>km/h</span></p>)}
+                {speed && (<p>{(speed*3.6).toFixed(2)}<span>km/h</span></p>)}
                 <TrackingUI />
             </div>
     )   

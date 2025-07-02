@@ -12,7 +12,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
   const [phase, setPhase] = useState('tracking'); // 'beforeStart' | 'readyToStart' | 'tracking'
   const [position, setPosition] = useState(null);
   const [passedIds, setPassedIds] = useState([]);
-  const [speed, setSpeed] = useState(0);
+  const [speed, setSpeed] = useState(null);
 
   const route = routeMap.find((route) => route.id === routeId);
   const startPoint = [route.checkPoints[0].coordinates[1], route.checkPoints[0].coordinates[0]] ;
