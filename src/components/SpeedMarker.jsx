@@ -6,6 +6,7 @@ import TrackingUI from './TrackingUI';
 function SpeedMarker({userPosition}) {
 
     const [prevData, setPrevData] = useState(null);
+    const prevDataRef = useRef(null);
     const [speedHistory, setSpeedHistory] = useState([]);
     const [speedWarning, setSpeedWarning] = useState(false);
     const [speed, setSpeed] = useState(0);
@@ -26,32 +27,25 @@ function median(arr) {
         if (!userPosition) return;
 
         const now = Date.now();
-        //setLastUpdateTime(now);
+        const prevData = prevDataRef.current;
+
         if (prevData) {
+            console.log('actions');
            const dt = (now - prevData.time) / 1000;
-           //if (dt < 5) return;
   
            const dist = getDistanceFromLatLonInKm(
            prevData.pos[0], prevData.pos[1],
            userPosition[0], userPosition[1]
            );
   
-           //if (dist < 0.005) return;
-  
            const speed = (dist / dt) * 3600;
-           //if (speed > 20) return;
+
+           console.log('speed:', speed);
            setSpeed(speed);
-  
-//       const updated = [...speedHistory.slice(-4), speed];
-//       setSpeedHistory(updated);
-  
-//       const medSpeed = median(updated);
-//       console.log(`Медианная скорость: ${medSpeed.toFixed(2)} км/ч`);
-//       setSpeed(medSpeed.toFixed(2));
-//       setSpeedWarning(medSpeed > 7);
+
          }
 
-        setPrevData({ pos: userPosition, time: now });
+         prevDataRef.current = { pos: userPosition, time: now };
 
     }, 1000);
 
