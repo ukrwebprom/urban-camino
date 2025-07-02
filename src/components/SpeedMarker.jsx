@@ -4,9 +4,9 @@ import getDistanceFromLatLonInKm from '../utils/getDistanceFromLatLonInKm';
 
 function SpeedMarker({userPosition}) {
 
-const [prevPosition, setPrevPosition] = useState(null);
-const [prevTimestamp, setPrevTimestamp] = useState(null);
-const [speedWarning, setSpeedWarning] = useState(false);
+    const [prevData, setPrevData] = useState(null);
+    const [speedHistory, setSpeedHistory] = useState([]);
+    const [speedWarning, setSpeedWarning] = useState(false);
 const [speed, setSpeed] = useState(0);
 
 function median(arr) {
