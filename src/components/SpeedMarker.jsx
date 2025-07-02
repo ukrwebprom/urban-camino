@@ -29,7 +29,7 @@ function median(arr) {
         setLastUpdateTime(now);
         if (prevData) {
            const dt = (now - prevData.time) / 1000;
-           if (dt < 5) return;
+           //if (dt < 5) return;
   
            const dist = getDistanceFromLatLonInKm(
            prevData.pos[0], prevData.pos[1],
