@@ -26,7 +26,7 @@ function median(arr) {
         if (!userPosition) return;
 
         const now = Date.now();
-        setLastUpdateTime(now);
+        //setLastUpdateTime(now);
         if (prevData) {
            const dt = (now - prevData.time) / 1000;
            //if (dt < 5) return;
@@ -40,7 +40,7 @@ function median(arr) {
   
            const speed = (dist / dt) * 3600;
            //if (speed > 20) return;
-           setSpeed(speed.toFixed(2));
+           setSpeed(speed);
   
 //       const updated = [...speedHistory.slice(-4), speed];
 //       setSpeedHistory(updated);
