@@ -13,8 +13,8 @@ function FinishScreen({ routeId }) {
   return (
     <div className={styles.main}>
       {!userName ? 
-        <EnterNameForm handleEnterName={handleEnterName} /> : 
-        <GetСertificate userName={userName} />
+        <EnterNameForm handleEnterName={handleEnterName} routeName={route.name} /> : 
+        <GetСertificate userName={userName} routeName={route.name} distance={route.distance} />
       }
     </div>
   );
