@@ -1,0 +1,30 @@
+.shell {
+    position:relative;
+    top: -40px;
+}
+
+.labelContent {
+    position:relative;
+    z-index:100;
+    text-align: center;
+    top: -35px;
+}
+
+.main {
+    background-color: #F6FF00;
+    padding:0px 25px 10px 25px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.labelContent > button {
+    margin: 15px;
+    background-color: black;
+    font-family: inherit;
+    color:white;
+    font-size: 13px;
+    text-transform: uppercase;
+    padding:10px 15px;
+    border-radius: 10px;
+    border:0;
+}

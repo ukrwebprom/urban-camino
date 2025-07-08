@@ -2,7 +2,6 @@ import styles from './SpeedMarker.module.css';
 import { useEffect, useState, useRef } from 'react';
 import getDistanceFromLatLonInKm from '../utils/getDistanceFromLatLonInKm';
 import TrackingUI from './TrackingUI';
-import ReactSpeedometer from "react-d3-speedometer"
 
 function SpeedMarker({speed}) {
 
@@ -115,7 +114,6 @@ function SpeedMarker({speed}) {
     return (
             <div className={styles.speedOmeter}>
                 {speed && (<p>{(speed*3.6).toFixed(2)}<span>km/h</span></p>)}
-                <ReactSpeedometer />
                 <TrackingUI />
             </div>
     )   

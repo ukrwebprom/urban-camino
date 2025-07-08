@@ -3,9 +3,11 @@
     width: 100%;
     height: calc(var(--vh, 1vh) * 100);
     overflow: hidden;
-    background-color: #F6FF00;
+    background-color: black;
     display:flex;
     flex-direction: column;
     justify-content:center;
     align-items: center;
+    padding:15px;
+    box-sizing: border-box;
 }

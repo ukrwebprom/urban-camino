@@ -1,10 +1,21 @@
 import styles from './FinishScreen.module.css';
-function FinishScreen({ onNext }) {
+import { useEffect, useState } from 'react'
+import routeMap from '../routes';
+import EnterNameForm from './EnterNameForm';
+import GetСertificate from './GetСertificate';
+
+function FinishScreen({ routeId }) {
+  const [userName, setUserName] = useState(null);
+  const route = routeMap.find((route) => route.id === routeId);
+
+  const handleEnterName = (name) => setUserName(name);
+
   return (
     <div className={styles.main}>
-      <h1>Finish</h1>
-      <p>Прогулки по городу как путь паломника.</p>
-      <button onClick={onNext}>Начать</button>
+      {!userName ? 
+        <EnterNameForm handleEnterName={handleEnterName} /> : 
+        <GetСertificate userName={userName} />
+      }
     </div>
   );
 }

@@ -6,7 +6,7 @@ import FinishScreen from './components/FinishScreen';
 import styles from './App.module.css';
 
 function App() {
-  const [step, setStep] = useState('home');
+  const [step, setStep] = useState('finish');
   const [selectedRouteId, setSelectedRouteId] = useState(null);
   // const [deferredPrompt, setDeferredPrompt] = useState(null);
   // const [installAvailable, setInstallAvailable] = useState(false);
@@ -55,7 +55,9 @@ function App() {
         onBack={()=> setStep('select')} />
         </>
       )}
-      {step === 'finish' && <FinishScreen />}
+      {step === 'finish' && <FinishScreen 
+      routeId={'padawan'} 
+      />}
 
     </div>
   );
