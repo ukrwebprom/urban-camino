@@ -14,7 +14,7 @@ function FinishScreen({ routeId }) {
     <div className={styles.main}>
       {!userName ? 
         <EnterNameForm handleEnterName={handleEnterName} routeName={route.name} /> : 
-        <GetСertificate userName={userName} routeName={route.name} distance={route.distance} />
+        <GetСertificate userName={userName} routeName={route.name} distance={route.distance} coordinates={route.coordinates} />
       }
     </div>
   );
