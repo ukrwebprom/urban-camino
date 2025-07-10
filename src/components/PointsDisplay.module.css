@@ -1,0 +1,17 @@
+    .container {
+      display: 'flex';
+      alignItems: 'center';
+      color: '#fff';
+      fontSize: '20px';
+      fontWeight: 'bold';
+    }
+
+    .icon {
+      width: '30px';
+      height: '30px';
+      marginRight: '5px';
+    }
+
+    .text {
+      lineHeight: '30px';
+    }

@@ -1,11 +1,13 @@
 import styles from './TopPanel.module.css';
-import logo from '../assets/logo.png';
+import PointsDisplay from './PointsDisplay';
+//import logo from '../assets/logo.png';
 
-function TopPanel({title}) {
+function TopPanel({points=0, title}) {
     return (
         <div className={styles.topPanel}>
               <h1 className={styles.topPanelTitle}>{title}</h1>
-              <img src={logo} alt="Urban Camino Logo" className={styles.logo} />
+              <PointsDisplay points={points} />
+              {/* <img src={logo} alt="Urban Camino Logo" className={styles.logo} /> */}
         </div>
     )
 }

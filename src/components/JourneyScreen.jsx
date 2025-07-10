@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import usePoints from '../hooks/usePoints';
 import MapView from './MapView';
 import routeMap from '../routes';
 import getDistance from '../utils/getDistance';
@@ -9,10 +10,11 @@ import ReadyToStartLabel from './ReadyToStartLabel';
 import SpeedMarker from './SpeedMarker';
 
 function JourneyScreen({routeId, onComplete, onBack }) {
-  const [phase, setPhase] = useState('tracking'); // 'beforeStart' | 'readyToStart' | 'tracking'
+  const [phase, setPhase] = useState('beforeStart'); // 'beforeStart' | 'readyToStart' | 'tracking'
   const [position, setPosition] = useState(null);
   const [passedIds, setPassedIds] = useState([]);
   const [speed, setSpeed] = useState(null);
+  const { points, addCheckpoint, finishRoute, resetPoints } = usePoints();
 
   const route = routeMap.find((route) => route.id === routeId);
   const startPoint = [route.checkPoints[0].coordinates[1], route.checkPoints[0].coordinates[0]] ;
@@ -66,6 +68,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
 
       if (dist < 30) {
         setPassedIds(prev => [...prev, id]);
+        addCheckpoint();
       }
     });
   }
@@ -75,6 +78,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
       phase === 'tracking' &&
       passedIds.length === route.checkPoints.length
     ) {
+      finishRoute();
       onComplete();
     }
   }, [passedIds, route, phase, onComplete]);
