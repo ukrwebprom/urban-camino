@@ -24,13 +24,15 @@
 
 @keyframes popup {
   from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(-100px); opacity: 0; }
 }
 
-.points-popup {
+.pointsPopup {
   position: absolute;
+  bottom:100px;
   color: yellow;
   font-weight: bold;
-  animation: popup 1.2s ease-out forwards;
+  font-size: 30px;
+  animation: popup 2s ease-out forwards;
   pointer-events: none;
 }

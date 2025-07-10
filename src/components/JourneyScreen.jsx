@@ -15,6 +15,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
   const [passedIds, setPassedIds] = useState([]);
   const [speed, setSpeed] = useState(null);
   const { points, addCheckpoint, finishRoute, resetPoints } = usePoints();
+  const {showGain, setShowGain} = useState(false);
 
   const route = routeMap.find((route) => route.id === routeId);
   const startPoint = [route.checkPoints[0].coordinates[1], route.checkPoints[0].coordinates[0]] ;
@@ -69,10 +70,15 @@ function JourneyScreen({routeId, onComplete, onBack }) {
       if (dist < 30) {
         setPassedIds(prev => [...prev, id]);
         addCheckpoint();
+        setShowGain(true);
+        setShowGain(status => !status);
       }
     });
   }
 
+  useEffect(() => {
+    if(showGain) setShowGain(false);
+  }, [showGain])
   useEffect(() => {
     if (
       phase === 'tracking' &&
@@ -112,7 +118,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
       {phase === 'tracking' && (
         <div className={styles.uiOverlay}>
           <SpeedMarker speed={speed} />
-          <div className="points-popup">+10 🐚</div>
+          {showGain && <div className={styles.pointsPopup}>+10</div>}
       </div>
       )}      
     </div>
