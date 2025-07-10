@@ -87,7 +87,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
 
   return (
     <>
-    <TopPanel title={route.name} />
+    <TopPanel points={points} title={route.name} />
     <div className={styles.container}>
 
       <MapView
@@ -112,6 +112,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
       {phase === 'tracking' && (
         <div className={styles.uiOverlay}>
           <SpeedMarker speed={speed} />
+          <div className="points-popup">+10 🐚</div>
       </div>
       )}      
     </div>
