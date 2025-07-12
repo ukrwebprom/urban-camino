@@ -97,9 +97,13 @@ function JourneyScreen({routeId, onComplete, onBack }) {
 
   return (
     <>
-    <TopPanel points={points} title={route.name}  showBack={true} onBack={onBack}
-    showPoints={phase === 'tracking'}
+    <TopPanel 
+      points={points} 
+      title={route.name} 
+      mode={phase}
+      onBack={onBack}
     />
+
     <div className={styles.container}>
 
       <MapView
