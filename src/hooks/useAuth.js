@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider, onAuthStateChanged } from 'firebase/auth';
 import { usePersistentState } from './usePersistentState'; // твой собственный хук
 import { initializeApp } from 'firebase/app';
 
@@ -22,44 +22,52 @@ const provider = new GoogleAuthProvider();
 export function useAuth() {
   const [user, setUser] = usePersistentState('user', null);
 
-  const handleLogin = async () => {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const userData = {
-        uid: result.user.uid,
-        displayName: result.user.displayName,
-        email: result.user.email,
-        photoURL: result.user.photoURL,
-      };
-      setUser(userData);
-      console.log(userData);
-    } catch (error) {
-      console.error('Login failed:', error);
-    }
-  };
-
-  const handleLogout = () => {
-    auth.signOut();
-    setUser(null);
-  };
-
-  // Синхронизация при обновлении страницы
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       if (firebaseUser) {
-        const userData = {
-          uid: firebaseUser.uid,
-          displayName: firebaseUser.displayName,
-          email: firebaseUser.email,
-          photoURL: firebaseUser.photoURL,
-        };
-        setUser(userData);
+        setUser(firebaseUser);
       } else {
         setUser(null);
       }
     });
+
+    // Обработка результата после редиректа
+    getRedirectResult(auth)
+      .then((result) => {
+        if (result?.user) {
+          setUser(result.user);
+        }
+      })
+      .catch((error) => {
+        console.error('Ошибка входа через редирект:', error);
+      });
+
     return () => unsubscribe();
-  }, []);
+  }, [setUser]);
+
+  const handleLogin = () => {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      signInWithRedirect(auth, provider);
+    } else {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          if (result.user) {
+            setUser(result.user);
+          }
+        })
+        .catch((error) => {
+          console.error('Ошибка входа:', error);
+        });
+    }
+  };
+
+  const handleLogout = () => {
+    auth.signOut().then(() => {
+      setUser(null);
+    });
+  };
 
   return { user, handleLogin, handleLogout };
 }
