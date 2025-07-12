@@ -46,7 +46,9 @@ function App() {
         key={selectedRouteId}
         routeId={selectedRouteId} 
         onComplete={() => setStep('finish')}
-        onBack={()=> setStep('select')} />
+        onBack={()=> {
+          setSelectedRouteId(null);
+          setStep('select')}} />
         </>
       )}
       {step === 'finish' && <FinishScreen 
