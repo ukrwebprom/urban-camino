@@ -10,7 +10,7 @@ import ReadyToStartLabel from './ReadyToStartLabel';
 import SpeedMarker from './SpeedMarker';
 import usePersistentState from '../hooks/usePersistentState';
 
-function JourneyScreen({phase, routeId, onComplete, onBack }) {
+function JourneyScreen({phase, setPhase, routeId, onComplete, onBack }) {
   
   const [position, setPosition] = useState(null);
   const [passedIds, setPassedIds] = useState([]);
