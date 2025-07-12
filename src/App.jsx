@@ -49,6 +49,7 @@ function App() {
         routeId={selectedRouteId} 
         onComplete={() => setStep('finish')}
         phase={phase}
+        setPhase={setPhase}
         onBack={()=> {
           setPhase('beforeStart');
           setSelectedRouteId(null);

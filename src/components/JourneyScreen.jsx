@@ -29,7 +29,7 @@ function JourneyScreen({phase, setPhase, routeId, onComplete, onBack }) {
         setPosition(coords);
         const speed = pos.coords.speed;
         setSpeed(speed);
-        handlePhaseLogic(phase, coords);
+        handlePhaseLogic(coords);
       },
       (err) => console.error('Geo error:', err),
       { enableHighAccuracy: true, maximumAge: 5000, timeout: 10000 }
@@ -39,8 +39,8 @@ function JourneyScreen({phase, setPhase, routeId, onComplete, onBack }) {
       navigator.geolocation.clearWatch(watchId);}
   }, [passedIds]);
 
- function handlePhaseLogic(currentPhase, coords) {
-    switch (currentPhase) {
+ function handlePhaseLogic(coords) {
+    switch (phase) {
       case 'beforeStart':
         checkArrivalAtStart(coords);
         break;
@@ -56,7 +56,7 @@ function JourneyScreen({phase, setPhase, routeId, onComplete, onBack }) {
   function checkArrivalAtStart(coords) {
     const distance = getDistance(coords, startPoint);
 
-    if (distance < 50 && phase !== 'tracking') {
+    if (distance < 50) {
       setPhase('readyToStart');
     }
   }
