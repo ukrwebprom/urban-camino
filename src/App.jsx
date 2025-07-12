@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import './i18n';
 import HomeScreen from './components/HomeScreen';
 import RouteSelectScreen from './components/RouteSelectScreen';
 import JourneyScreen from './components/JourneyScreen';

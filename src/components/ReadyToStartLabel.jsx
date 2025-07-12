@@ -1,14 +1,16 @@
 import styles from './ReadyToStartLabel.module.css';
 import shell from '../assets/logo-inyellow.png';
+import { useTranslation } from 'react-i18next';
 
 function ReadyToStartLabel({handleStart}) {
+    const { t } = useTranslation();
     return (
         <div className={styles.main}>
             <img src={shell} className={styles.shell}/>
             <div className={styles.labelContent}>
-                <h4>You're at the start. </h4>
-                <p>Ready to begin your journey?</p>
-                <button onClick={() => handleStart()}>Start the journey</button>
+                <h4>{t('ReadyTitle')}</h4>
+                <p>{t('ReadyQuestion')}</p>
+                <button onClick={() => handleStart()}>{t('ReadyButton')}</button>
             </div>
         </div>
     )

@@ -1,0 +1,10 @@
+{
+  "find-route": "ЗНАЙТИ МАРШРУТ",
+  "Start": "Старт",
+  "Finish": "Фініш",
+  "Select": "Обрати",
+  "MoveToStart": "Рухайся до старту",
+  "ReadyTitle":"Ти на старті!",
+  "ReadyQuestion": "Готовий вирушити в дорогу?",
+  "ReadyButton": "поїхали"
+}

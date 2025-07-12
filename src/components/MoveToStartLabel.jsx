@@ -1,12 +1,14 @@
 import styles from './MoveToStartLabel.module.css';
 import flag from '../assets/flag.png';
+import { useTranslation } from 'react-i18next';
 
 function MoveToStartLabel({addr}) {
+    const { t } = useTranslation();
     return (
         <div className={styles.main}>
             <img src={flag} width={33}/>
             <div className={styles.labelInfo}>
-                <h4>Move to the starting point</h4>
+                <h4>{t('MoveToStart')}</h4>
                 <p>{addr}</p>
             </div>
             

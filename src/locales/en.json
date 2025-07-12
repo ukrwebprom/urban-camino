@@ -1,0 +1,10 @@
+{
+  "find-route": "FIND ROUTE",
+  "Start": "Start",
+  "Finish": "Finish",
+  "Select": "Select",
+  "MoveToStart": "Move to the starting point",
+  "ReadyTitle":"You're at the start.",
+  "ReadyQuestion": "Ready to begin your journey?",
+  "ReadyButton": "Start the journey"
+}

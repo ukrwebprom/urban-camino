@@ -69,6 +69,7 @@ function MapView({ route, userPosition, startPoint, phase, passedIds }) {
       center={startPoint}
       zoom={15}
       className={styles.map}
+      zoomControl={false}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
