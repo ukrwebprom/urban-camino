@@ -56,7 +56,7 @@ function JourneyScreen({phase, setPhase, routeId, onComplete, onBack }) {
   function checkArrivalAtStart(coords) {
     const distance = getDistance(coords, startPoint);
 
-    if (distance < 30 && phase !== 'tracking') {
+    if (distance < 50 && phase !== 'tracking') {
       setPhase('readyToStart');
     }
   }
