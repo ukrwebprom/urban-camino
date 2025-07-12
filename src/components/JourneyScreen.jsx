@@ -40,15 +40,12 @@ function JourneyScreen({phase, setPhase, routeId, onComplete, onBack }) {
   }, [passedIds]);
 
  function handlePhaseLogic(coords) {
-    switch (phase) {
-      case 'beforeStart':
-        checkArrivalAtStart(coords);
-        break;
-      case 'tracking':
-        checkPassedCheckpoints(coords);
-        break;
-      default:
-        break;
+    if (phase === 'beforeStart') {
+    checkArrivalAtStart(coords);
+    }
+
+    if (phase === 'tracking') {
+    checkPassedCheckpoints(coords);
     }
   }
 
@@ -56,7 +53,7 @@ function JourneyScreen({phase, setPhase, routeId, onComplete, onBack }) {
   function checkArrivalAtStart(coords) {
     const distance = getDistance(coords, startPoint);
 
-    if (distance < 50) {
+    if (distance < 30 && phase === 'beforeStart') {
       setPhase('readyToStart');
     }
   }
