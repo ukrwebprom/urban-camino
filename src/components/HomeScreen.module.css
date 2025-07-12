@@ -40,6 +40,7 @@
     font-weight: 500;
     font-family: inherit;
     z-index: 10;
+    margin-top: 25px;
 }
 .videoBg {
   position: absolute;
@@ -60,4 +61,14 @@
   height: 45px;
   background-color: #FDF400;
   z-index: 100;
+}
+
+.logSign {
+  color:white;
+  font-family: inherit;
+  font-size: 13px;
+  z-index: 20;
+  display: flex;
+  gap:15px;
+  margin-bottom: 25px;
 }

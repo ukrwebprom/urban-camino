@@ -2,10 +2,10 @@ import styles from './TopPanel.module.css';
 import PointsDisplay from './PointsDisplay';
 import dots from '../assets/dots.svg';
 import backArrow from '../assets/back-arrow.svg';
-import user from '../assets/user.svg';
+import userIcon from '../assets/user.svg';
 import LanguageSelector from './LanguageSelector';
 
-function TopPanel({mode, onBack, points=0, title}) {
+function TopPanel({mode, onBack, points=0, title, user}) {
     return (
         <div className={styles.topPanel}
             style={{backgroundColor: mode==="home" ? 'transparent' : 'rgba(0,0,0,0.8)'} }
@@ -13,7 +13,7 @@ function TopPanel({mode, onBack, points=0, title}) {
               {mode !=="home" && <img src={backArrow} className={styles.backArrow} onClick={onBack} />}
               {mode !=="home" && <h1 className={styles.topPanelTitle}>{title}</h1>}
               {mode === 'tracking' && <PointsDisplay points={points} />}
-              <img src={user} onClick={() => console.log('click')}/>
+              <img src={user ? user.photoURL : userIcon} onClick={() => console.log('click')} className={styles.userPic}/>
               {/* <img src={logo} alt="Urban Camino Logo" className={styles.logo} /> */}
         </div>
     )

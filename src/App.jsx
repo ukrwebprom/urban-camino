@@ -5,7 +5,7 @@ import RouteSelectScreen from './components/RouteSelectScreen';
 import JourneyScreen from './components/JourneyScreen';
 import FinishScreen from './components/FinishScreen';
 import styles from './App.module.css';
-import usePersistentState from './hooks/usePersistentState';
+import {usePersistentState} from './hooks/usePersistentState';
 
 function App() {
   //const [step, setStep] = useState('home');

@@ -8,7 +8,8 @@ import TopPanel from './TopPanel';
 import MoveToStartLabel from './MoveToStartLabel';
 import ReadyToStartLabel from './ReadyToStartLabel';
 import SpeedMarker from './SpeedMarker';
-import usePersistentState from '../hooks/usePersistentState';
+import {usePersistentState} from '../hooks/usePersistentState';
+import { useAuth } from '../hooks/useAuth';
 
 function JourneyScreen({phase, setPhase, routeId, onComplete, onBack }) {
   
@@ -17,6 +18,7 @@ function JourneyScreen({phase, setPhase, routeId, onComplete, onBack }) {
   const [speed, setSpeed] = useState(null);
   const { points, addCheckpoint, finishRoute, resetPoints } = usePoints();
   const {showGain, setShowGain} = useState(false);
+  const { user, handleLogin, handleLogout } = useAuth();
 
   const route = routeMap.find((route) => route.id === routeId);
   const startPoint = [route.checkPoints[0].coordinates[1], route.checkPoints[0].coordinates[0]] ;
@@ -105,6 +107,7 @@ function JourneyScreen({phase, setPhase, routeId, onComplete, onBack }) {
       title={route.name} 
       mode={phase}
       onBack={onBack}
+      user={user}
     />
 
     <div className={styles.container}>
