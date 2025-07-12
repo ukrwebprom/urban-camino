@@ -8,9 +8,10 @@ import TopPanel from './TopPanel';
 import MoveToStartLabel from './MoveToStartLabel';
 import ReadyToStartLabel from './ReadyToStartLabel';
 import SpeedMarker from './SpeedMarker';
+import usePersistentState from '../hooks/usePersistentState';
 
 function JourneyScreen({routeId, onComplete, onBack }) {
-  const [phase, setPhase] = useState('beforeStart'); // 'beforeStart' | 'readyToStart' | 'tracking'
+  const [phase, setPhase] = usePersistentState('phase', 'beforeStart'); // 'beforeStart' | 'readyToStart' | 'tracking'
   const [position, setPosition] = useState(null);
   const [passedIds, setPassedIds] = useState([]);
   const [speed, setSpeed] = useState(null);
@@ -34,8 +35,10 @@ function JourneyScreen({routeId, onComplete, onBack }) {
       { enableHighAccuracy: true, maximumAge: 5000, timeout: 10000 }
     );
 
-    return () => navigator.geolocation.clearWatch(watchId);
-  }, [phase, passedIds]);
+    return () => {
+      setPhase('beforeStart');
+      navigator.geolocation.clearWatch(watchId);}
+  }, [passedIds]);
 
  function handlePhaseLogic(currentPhase, coords) {
     switch (currentPhase) {
@@ -54,7 +57,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
   function checkArrivalAtStart(coords) {
     const distance = getDistance(coords, startPoint);
 
-    if (distance < 30) {
+    if (distance < 30 && phase !== 'tracking') {
       setPhase('readyToStart');
     }
   }
@@ -79,6 +82,7 @@ function JourneyScreen({routeId, onComplete, onBack }) {
   useEffect(() => {
     if(showGain) setShowGain(false);
   }, [showGain])
+
   useEffect(() => {
     if (
       phase === 'tracking' &&
@@ -93,7 +97,9 @@ function JourneyScreen({routeId, onComplete, onBack }) {
 
   return (
     <>
-    <TopPanel points={points} title={route.name} />
+    <TopPanel points={points} title={route.name}  showBack={true} onBack={onBack}
+    showPoints={phase === 'tracking'}
+    />
     <div className={styles.container}>
 
       <MapView

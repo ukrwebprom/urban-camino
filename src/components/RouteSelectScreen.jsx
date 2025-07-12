@@ -6,7 +6,7 @@ import TopPanel from './TopPanel';
 function RouteSelectScreen({ onSelect, onBack }) {
   return (
     <>
-    <TopPanel title={'Routes'} />
+    <TopPanel title={'Routes'} showBack={true} onBack={onBack} />
     <div className={styles.container}>
         {
             routeMap.map((route) => (
@@ -39,7 +39,6 @@ function RouteSelectScreen({ onSelect, onBack }) {
         }
       
     </div>
-    <button onClick={onBack}>back</button>
     </>
   );
 }

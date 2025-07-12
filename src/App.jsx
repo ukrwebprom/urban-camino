@@ -4,20 +4,13 @@ import RouteSelectScreen from './components/RouteSelectScreen';
 import JourneyScreen from './components/JourneyScreen';
 import FinishScreen from './components/FinishScreen';
 import styles from './App.module.css';
+import usePersistentState from './hooks/usePersistentState';
 
 function App() {
-  const [step, setStep] = useState('home');
-  const [selectedRouteId, setSelectedRouteId] = useState(null);
-  // const [deferredPrompt, setDeferredPrompt] = useState(null);
-  // const [installAvailable, setInstallAvailable] = useState(false);
+  //const [step, setStep] = useState('home');
+  const [step, setStep] = usePersistentState('step', 'home');
+  const [selectedRouteId, setSelectedRouteId] = usePersistentState('selectedRouteId', null);
 
-  // useEffect(() => {
-  //   window.addEventListener('beforeinstallprompt', (e) => {
-  //     e.preventDefault();
-  //     setDeferredPrompt(e); // Сохраняем событие
-  //     setInstallAvailable(true); // Показать кнопку
-  //   });
-  // }, []);
 
   useEffect(() => {
   if (selectedRouteId) {
@@ -36,7 +29,7 @@ function App() {
   
     return () => window.removeEventListener('resize', setViewportHeight);
   }, []);
-  
+  console.log(step);
   return (
     <div className={styles.main}>
       {step === 'home' && <HomeScreen onNext={() => setStep('select')} />}

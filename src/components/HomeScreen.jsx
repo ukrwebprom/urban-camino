@@ -1,4 +1,5 @@
 import logo from '../assets/logo.png';
+import name from '../assets/URBANCAMINO.svg';
 import bgVideo from '../assets/bg.mp4';
 import styles from './HomeScreen.module.css';
 function HomeScreen({ onNext }) {
@@ -14,15 +15,16 @@ function HomeScreen({ onNext }) {
       />
       {/* Центр: логотип и название */}
       <div className={styles.logo}>
-        <img src={logo} alt="Urban Camino Logo" className="w-20 h-20" />
-        <h1 className={styles.name}>URBAN CAMINO</h1>
+        <img src={logo} alt="Urban Camino Logo" className={styles.shell}/>
+        <img src={name} alt="Urban Camino" />
+        {/* <h1 className={styles.name}>URBAN CAMINO</h1> */}
       </div>
 
       <button
         className={styles.button}
         onClick={onNext}
       >
-        FIND ROUT
+        FIND ROUTE
       </button>
 {/* 
       <div className={styles.bottompanel}>
