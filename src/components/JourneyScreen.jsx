@@ -52,11 +52,6 @@ function JourneyScreen({phase, setPhase, routeId, onComplete, onBack }) {
     }
   }
 
-  function clearAndBack() {
-    console.log('clear');
-    setPhase('beforeStart');
-    //onBack();
-  }
 
   function checkArrivalAtStart(coords) {
     const distance = getDistance(coords, startPoint);
