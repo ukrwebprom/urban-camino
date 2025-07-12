@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import usePoints from '../hooks/usePoints';
 import MapView from './MapView';
 import routeMap from '../routes';
@@ -21,6 +21,11 @@ function JourneyScreen({phase, setPhase, routeId, onComplete, onBack }) {
   const route = routeMap.find((route) => route.id === routeId);
   const startPoint = [route.checkPoints[0].coordinates[1], route.checkPoints[0].coordinates[0]] ;
 
+  const phaseRef = useRef(phase);
+  useEffect(() => {
+    phaseRef.current = phase;
+  }, [phase]);
+
 
   useEffect(() => {
     const watchId = navigator.geolocation.watchPosition(
@@ -40,11 +45,13 @@ function JourneyScreen({phase, setPhase, routeId, onComplete, onBack }) {
   }, [passedIds]);
 
  function handlePhaseLogic(coords) {
-    if (phase === 'beforeStart') {
+    const currentPhase = phaseRef.current;
+
+    if (currentPhase === 'beforeStart') {
     checkArrivalAtStart(coords);
     }
 
-    if (phase === 'tracking') {
+    if (currentPhase === 'tracking') {
     checkPassedCheckpoints(coords);
     }
   }
@@ -53,7 +60,7 @@ function JourneyScreen({phase, setPhase, routeId, onComplete, onBack }) {
   function checkArrivalAtStart(coords) {
     const distance = getDistance(coords, startPoint);
 
-    if (distance < 30 && phase === 'beforeStart') {
+    if (distance < 30 && phaseRef.current === 'beforeStart') {
       setPhase('readyToStart');
     }
   }
