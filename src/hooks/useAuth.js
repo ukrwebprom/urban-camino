@@ -36,6 +36,7 @@ export function useAuth() {
       .then((result) => {
         if (result?.user) {
           setUser(result.user);
+          console.log(result.user);
         }
       })
       .catch((error) => {
@@ -49,8 +50,10 @@ export function useAuth() {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     if (isMobile) {
+      console.log('mobile');
       signInWithRedirect(auth, provider);
     } else {
+      console.log('desktop');
       signInWithPopup(auth, provider)
         .then((result) => {
           if (result.user) {
