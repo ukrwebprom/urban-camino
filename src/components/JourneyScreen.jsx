@@ -10,8 +10,8 @@ import ReadyToStartLabel from './ReadyToStartLabel';
 import SpeedMarker from './SpeedMarker';
 import usePersistentState from '../hooks/usePersistentState';
 
-function JourneyScreen({routeId, onComplete, onBack }) {
-  const [phase, setPhase] = usePersistentState('phase', 'beforeStart'); // 'beforeStart' | 'readyToStart' | 'tracking'
+function JourneyScreen({phase, routeId, onComplete, onBack }) {
+  
   const [position, setPosition] = useState(null);
   const [passedIds, setPassedIds] = useState([]);
   const [speed, setSpeed] = useState(null);
@@ -36,7 +36,6 @@ function JourneyScreen({routeId, onComplete, onBack }) {
     );
 
     return () => {
-      setPhase('beforeStart');
       navigator.geolocation.clearWatch(watchId);}
   }, [passedIds]);
 
@@ -53,6 +52,11 @@ function JourneyScreen({routeId, onComplete, onBack }) {
     }
   }
 
+  function clearAndBack() {
+    console.log('clear');
+    setPhase('beforeStart');
+    //onBack();
+  }
 
   function checkArrivalAtStart(coords) {
     const distance = getDistance(coords, startPoint);

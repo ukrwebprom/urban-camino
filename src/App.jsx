@@ -11,6 +11,7 @@ function App() {
   //const [step, setStep] = useState('home');
   const [step, setStep] = usePersistentState('step', 'home');
   const [selectedRouteId, setSelectedRouteId] = usePersistentState('selectedRouteId', null);
+  const [phase, setPhase] = usePersistentState('phase', 'beforeStart'); // 'beforeStart' | 'readyToStart' | 'tracking'
 
 
   useEffect(() => {
@@ -36,6 +37,7 @@ function App() {
       {step === 'home' && <HomeScreen onNext={() => setStep('select')} />}
       {step === 'select' && <RouteSelectScreen 
         onSelect={(routeId) => {
+          setPhase('beforeStart');
           setSelectedRouteId(routeId);
           }
         } 
@@ -46,7 +48,9 @@ function App() {
         key={selectedRouteId}
         routeId={selectedRouteId} 
         onComplete={() => setStep('finish')}
+        phase={phase}
         onBack={()=> {
+          setPhase('beforeStart');
           setSelectedRouteId(null);
           setStep('select')}} />
         </>
