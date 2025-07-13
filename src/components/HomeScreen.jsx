@@ -5,6 +5,7 @@ import styles from './HomeScreen.module.css';
 import TopPanel from './TopPanel';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../hooks/useAuth';
+import AuthForm from '../hooks/AuthForm';
 
 function HomeScreen({ onNext }) {
   const { t } = useTranslation();
@@ -32,9 +33,10 @@ function HomeScreen({ onNext }) {
         </button>
       </div>
       <div className={styles.logSign}>
-        <p onClick={handleGoogleSignInRedirect}>Log In</p>
+        <AuthForm />
+        {/* <p onClick={handleGoogleSignInRedirect}>Log In</p>
         <p>|</p>
-        <p onClick={handleLogout}>Sign Up</p>
+        <p onClick={handleLogout}>Sign Up</p> */}
       </div>
     </div>
   );

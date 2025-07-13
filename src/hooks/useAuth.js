@@ -6,8 +6,7 @@ import { initializeApp } from 'firebase/app';
 // Firebase config (замени на свои данные)
 const firebaseConfig = {
   apiKey: "AIzaSyDVnU2xYm1baZYomNPmX7ph58m7_qhmSps",
-  //authDomain: "urban-camino.firebaseapp.com",
-  authDomain: window.location.hostname + ':5173',
+  authDomain: "urban-camino.firebaseapp.com",
   projectId: "urban-camino",
   storageBucket: "urban-camino.firebasestorage.app",
   messagingSenderId: "761376237323",
@@ -73,8 +72,9 @@ export function useAuth() {
     try {
       // This will redirect the user to Google's sign-in page.
       // Your app will be reloaded after the redirect.
-      await signInWithRedirect(auth, provider);
       console.log('open auth window');
+      await signInWithRedirect(auth, provider);
+      
       // No code here will run immediately after the redirect.
       // The result is handled by getRedirectResult on page load.
     } catch (error) {

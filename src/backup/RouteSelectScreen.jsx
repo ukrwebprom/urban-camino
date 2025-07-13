@@ -15,18 +15,12 @@ function RouteSelectScreen({ onSelect, onBack }) {
         {
             routeMap.map((route) => (
                 <div key={route.id} className={styles.routeCard}>
-                    <div className={styles.topLine}>
-                      <h3 className={styles.title}>{route.name}</h3>
-                      <button onClick={() => onSelect(route.id)} className={styles.button}>{t('Select')}</button>
-                    </div>
-                    
+                    <h3 className={styles.title}>{route.name}</h3>
                     <p className={styles.description}>{route.description}</p>
                     <div className={styles.routeInfo}>
                       <RouteSketch route = {route.coordinates}
                       checkpoints={route.checkPoints.map((point) => (point.coordinates))} 
                       className={styles.routeMap} />
-
-                      <div className={styles.bottomLine}>
                       <div className={styles.routeData}>
                         <div className={styles.startFinish}>
                           <h4>{t('Start')}</h4>
@@ -37,9 +31,8 @@ function RouteSelectScreen({ onSelect, onBack }) {
                           <p>{route.finish}</p>
                         </div>
                       </div>
-                      
+                      <button onClick={() => onSelect(route.id)} className={styles.button}>{t('Select')}</button>
                       <p className={styles.distance}>{route.distance}<span> km</span></p>
-                      </div>
                     </div>
                     
                     
