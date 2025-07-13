@@ -6,7 +6,7 @@ import { initializeApp } from 'firebase/app';
 // Firebase config (замени на свои данные)
 const firebaseConfig = {
   apiKey: "AIzaSyDVnU2xYm1baZYomNPmX7ph58m7_qhmSps",
-  authDomain: "urban-camino.firebaseapp.com",
+  authDomain: "urban-camino.onrender.com",
   projectId: "urban-camino",
   storageBucket: "urban-camino.firebasestorage.app",
   messagingSenderId: "761376237323",
@@ -30,12 +30,13 @@ export function useAuth() {
         setUser(null);
       }
     });
-
+    console.log('auth', auth);
     // Обработка результата после редиректа
     getRedirectResult(auth)
       .then((result) => {
+        console.log('result', result);
         if (result?.user) {
-          setUser(result.user);
+          if(!user) setUser(result.user);
           console.log(result.user);
         }
       })
@@ -44,7 +45,7 @@ export function useAuth() {
       });
 
     return () => unsubscribe();
-  }, [setUser]);
+  }, []);
 
   const handleLogin = () => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
