@@ -6,7 +6,8 @@ import { initializeApp } from 'firebase/app';
 // Firebase config (замени на свои данные)
 const firebaseConfig = {
   apiKey: "AIzaSyDVnU2xYm1baZYomNPmX7ph58m7_qhmSps",
-  authDomain: "urban-camino.onrender.com",
+  //authDomain: "urban-camino.firebaseapp.com",
+  authDomain: window.location.hostname + ':5173',
   projectId: "urban-camino",
   storageBucket: "urban-camino.firebasestorage.app",
   messagingSenderId: "761376237323",
@@ -47,23 +48,39 @@ export function useAuth() {
     return () => unsubscribe();
   }, []);
 
-  const handleLogin = () => {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  // const handleLogin = () => {
+  //   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    if (isMobile) {
-      console.log('mobile');
-      signInWithRedirect(auth, provider);
-    } else {
-      console.log('desktop');
-      signInWithPopup(auth, provider)
-        .then((result) => {
-          if (result.user) {
-            setUser(result.user);
-          }
-        })
-        .catch((error) => {
-          console.error('Ошибка входа:', error);
-        });
+  //   if (isMobile) {
+  //     console.log('mobile');
+  //     signInWithRedirect(auth, provider);
+  //   } else {
+  //     console.log('desktop');
+  //     signInWithPopup(auth, provider)
+  //       .then((result) => {
+  //         if (result.user) {
+  //           setUser(result.user);
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.error('Ошибка входа:', error);
+  //       });
+  //   }
+  // };
+
+  const handleGoogleSignInRedirect = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      // This will redirect the user to Google's sign-in page.
+      // Your app will be reloaded after the redirect.
+      await signInWithRedirect(auth, provider);
+      console.log('open auth window');
+      // No code here will run immediately after the redirect.
+      // The result is handled by getRedirectResult on page load.
+    } catch (error) {
+      // Handle errors during the initial redirect attempt (less common)
+      console.error("Error initiating Google Sign-In redirect:", error);
+      // You might display an error message to the user here.
     }
   };
 
@@ -73,5 +90,5 @@ export function useAuth() {
     });
   };
 
-  return { user, handleLogin, handleLogout };
+  return { user, handleLogout, handleGoogleSignInRedirect };
 }

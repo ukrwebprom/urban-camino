@@ -8,7 +8,7 @@ import { useAuth } from '../hooks/useAuth';
 
 function HomeScreen({ onNext }) {
   const { t } = useTranslation();
-  const { user, handleLogin, handleLogout } = useAuth();
+  const { user, handleLogin, handleLogout, handleGoogleSignInRedirect } = useAuth();
 
   return (
     <div className={styles.container}>
@@ -32,7 +32,7 @@ function HomeScreen({ onNext }) {
         </button>
       </div>
       <div className={styles.logSign}>
-        <p onClick={handleLogin}>Log In</p>
+        <p onClick={handleGoogleSignInRedirect}>Log In</p>
         <p>|</p>
         <p onClick={handleLogout}>Sign Up</p>
       </div>
