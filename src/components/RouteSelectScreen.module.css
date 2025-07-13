@@ -17,6 +17,10 @@
 .topLine, .bottomLine {
     display:flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+}
+.topLine {
+    flex-wrap: nowrap;
 }
 .title {
     font-family: inherit;
