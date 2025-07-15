@@ -11,6 +11,7 @@ function TopPanel({mode, onBack, points=0, title, user}) {
     const [showOverlay, setShowOverlay] = useState(false);
     return (
         <>
+        console.log('fuck');
         <div className={styles.topPanel}
             style={{backgroundColor: mode==="home" ? 'transparent' : 'rgba(0,0,0,0.8)'} }
         >     {mode === 'home' && <LanguageSelector />}
