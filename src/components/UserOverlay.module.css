@@ -9,6 +9,11 @@
     border:0;
     box-sizing: border-box;
     padding:20px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 100px;
 }
 .closeBtn {
     position:absolute;
@@ -23,6 +28,7 @@
     border-radius: 8px;
     list-style: none;
     padding:0;
+    width:100%;
 }
 .modeSwitcher > li {
     padding:10px;
@@ -35,4 +41,11 @@
 .activeItem {
     background-color: black;
     color:white;
+}
+.loginDescription {
+    text-align: center;
+    font-family: inherit;
+    font-size: 14px;
+    margin-top:25px;
+    margin-bottom: 50px;
 }
