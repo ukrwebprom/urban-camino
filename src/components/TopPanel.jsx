@@ -5,7 +5,7 @@ import backArrow from '../assets/back-arrow.svg';
 import userIcon from '../assets/user.svg';
 import LanguageSelector from './LanguageSelector';
 import { useState } from 'react';
-import UserOverlay from './userOverlay';
+import UserOverlay from './UserOverlay';
 
 function TopPanel({mode, onBack, points=0, title, user}) {
     const [showOverlay, setShowOverlay] = useState(false);
