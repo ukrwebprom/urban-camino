@@ -4,18 +4,24 @@ import dots from '../assets/dots.svg';
 import backArrow from '../assets/back-arrow.svg';
 import userIcon from '../assets/user.svg';
 import LanguageSelector from './LanguageSelector';
+import { useState } from 'react';
+import UserOverlay from './userOverlay';
 
 function TopPanel({mode, onBack, points=0, title, user}) {
+    const [showOverlay, setShowOverlay] = useState(false);
     return (
+        <>
         <div className={styles.topPanel}
             style={{backgroundColor: mode==="home" ? 'transparent' : 'rgba(0,0,0,0.8)'} }
         >     {mode === 'home' && <LanguageSelector />}
               {mode !=="home" && <img src={backArrow} className={styles.backArrow} onClick={onBack} />}
               {mode !=="home" && <h1 className={styles.topPanelTitle}>{title}</h1>}
               {mode === 'tracking' && <PointsDisplay points={points} />}
-              <img src={user ? user.photoURL : userIcon} onClick={() => console.log('click')} className={styles.userPic}/>
+              <img src={user ? user.photoURL : userIcon} onClick={() => setShowOverlay(true)} className={styles.userPic}/>
               {/* <img src={logo} alt="Urban Camino Logo" className={styles.logo} /> */}
         </div>
+        {showOverlay && <UserOverlay onClose={() => setShowOverlay(false)} />}
+        </>
     )
 }
 
