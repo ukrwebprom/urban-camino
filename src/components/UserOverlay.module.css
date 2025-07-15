@@ -49,3 +49,51 @@
     margin-top:25px;
     margin-bottom: 50px;
 }
+.form {
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    width:100%;
+    margin-top:20px;
+}
+.form > input {
+    background-color: #F3F3F3;
+    border:0;
+    padding:15px;
+    font-family: inherit;
+    font-size: 16px;
+    border-radius: 8px;
+}
+.form > button {
+    background-color: black;
+    color: white;
+    padding:10px;
+    font-family: inherit;
+    font-size: 16px;
+    border:0;
+    border-radius: 8px;
+    text-transform: uppercase;
+}
+.errorPanel {
+
+    background-color: #FFB2B2;
+    border-radius: 8px;
+    padding:10px;
+    font-family: inherit;
+    font-size: 14px;
+    margin-top: 10px;
+}
+.forgot {
+    font-family: inherit;
+    font-size: 14px;
+    text-decoration: underline;
+    margin-top: 10px;
+}
+.messagePanel {
+    background-color: #F6FF00;
+    border-radius: 8px;
+    padding:10px;
+    font-family: inherit;
+    font-size: 14px;
+    margin-top: 10px;
+}

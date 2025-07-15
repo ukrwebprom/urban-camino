@@ -4,12 +4,14 @@ import bgVideo from '../assets/bg.mp4';
 import styles from './HomeScreen.module.css';
 import TopPanel from './TopPanel';
 import { useTranslation } from 'react-i18next';
-import { useAuth } from '../hooks/useAuth';
+//import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../AuthProvider';
 import AuthForm from '../hooks/AuthForm';
 
 function HomeScreen({ onNext }) {
   const { t } = useTranslation();
-  const { user, handleLogin, handleLogout, handleGoogleSignInRedirect } = useAuth();
+  const { user, loading } = useAuth();
+  //const { user, handleLogin, handleLogout, handleGoogleSignInRedirect } = useAuth();
 
   return (
     <div className={styles.container}>

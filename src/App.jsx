@@ -6,6 +6,7 @@ import JourneyScreen from './components/JourneyScreen';
 import FinishScreen from './components/FinishScreen';
 import styles from './App.module.css';
 import {usePersistentState} from './hooks/usePersistentState';
+import { AuthProvider } from './AuthProvider';
 
 function App() {
   //const [step, setStep] = useState('home');
@@ -33,6 +34,7 @@ function App() {
   }, []);
   console.log(step);
   return (
+    <AuthProvider>
     <div className={styles.main}>
       {step === 'home' && <HomeScreen onNext={() => setStep('select')} />}
       {step === 'select' && <RouteSelectScreen 
@@ -61,6 +63,7 @@ function App() {
       />}
 
     </div>
+    </AuthProvider>
   );
 }
 
