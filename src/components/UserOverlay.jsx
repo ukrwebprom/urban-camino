@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import styles from './UserOverlay.module.css';
 import closeIcon from '../assets/close.svg';
-import { useState } from 'react';
 import userIcon from '../assets/unknownuser.svg';
+
 
 function UserOverlay ({onClose}) {
     const [isLogin, setIsLogin] = useState(true);
