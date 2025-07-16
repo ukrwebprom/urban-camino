@@ -3,15 +3,16 @@ import RouteSketch from '../utils/RouteSketch';
 import styles from './RouteSelectScreen.module.css';
 import TopPanel from './TopPanel';
 import { useTranslation } from 'react-i18next';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../AuthProvider';
 
 function RouteSelectScreen({ onSelect, onBack }) {
   const { t } = useTranslation();
   const { user, handleLogin, handleLogout } = useAuth();
   return (
     <>
-    <TopPanel title={'Routes'} showBack={true} onBack={onBack} user={user} />
+    
     <div className={styles.container}>
+    <TopPanel title={'Routes'} showBack={true} onBack={onBack} user={user} />
         {
             routeMap.map((route) => (
                 <div key={route.id} className={styles.routeCard}>

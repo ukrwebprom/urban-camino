@@ -6,7 +6,7 @@ import TopPanel from './TopPanel';
 import { useTranslation } from 'react-i18next';
 //import { useAuth } from '../hooks/useAuth';
 import { useAuth } from '../AuthProvider';
-import AuthForm from '../hooks/AuthForm';
+//import AuthForm from '../hooks/AuthForm';
 
 function HomeScreen({ onNext }) {
   const { t } = useTranslation();
@@ -34,12 +34,9 @@ function HomeScreen({ onNext }) {
           {t('find-route')}
         </button>
       </div>
-      <div className={styles.logSign}>
+      {/* <div className={styles.logSign}>
         <AuthForm />
-        {/* <p onClick={handleGoogleSignInRedirect}>Log In</p>
-        <p>|</p>
-        <p onClick={handleLogout}>Sign Up</p> */}
-      </div>
+      </div> */}
     </div>
   );
 }

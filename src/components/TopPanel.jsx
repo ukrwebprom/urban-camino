@@ -6,12 +6,12 @@ import userIcon from '../assets/user.svg';
 import LanguageSelector from './LanguageSelector';
 import { useState } from 'react';
 import UserOverlay from './UserOverlay';
+import LoggedUserOverlay from './LoggedUserOverlay'
 
 function TopPanel({mode, onBack, points=0, title, user}) {
     const [showOverlay, setShowOverlay] = useState(false);
     return (
         <>
-        console.log('fuck');
         <div className={styles.topPanel}
             style={{backgroundColor: mode==="home" ? 'transparent' : 'rgba(0,0,0,0.8)'} }
         >     {mode === 'home' && <LanguageSelector />}
@@ -21,7 +21,11 @@ function TopPanel({mode, onBack, points=0, title, user}) {
               <img src={user ? user.photoURL : userIcon} onClick={() => setShowOverlay(true)} className={styles.userPic}/>
               {/* <img src={logo} alt="Urban Camino Logo" className={styles.logo} /> */}
         </div>
-        {showOverlay && <UserOverlay onClose={() => setShowOverlay(false)} />}
+        {showOverlay && (user ?
+            <LoggedUserOverlay onClose={() => setShowOverlay(false)} /> :
+            <UserOverlay onClose={() => setShowOverlay(false)} />)
+            
+        }
         </>
     )
 }

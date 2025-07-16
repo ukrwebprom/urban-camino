@@ -9,7 +9,7 @@ import MoveToStartLabel from './MoveToStartLabel';
 import ReadyToStartLabel from './ReadyToStartLabel';
 import SpeedMarker from './SpeedMarker';
 import {usePersistentState} from '../hooks/usePersistentState';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../AuthProvider';
 
 function JourneyScreen({phase, setPhase, routeId, onComplete, onBack }) {
   
@@ -102,6 +102,9 @@ function JourneyScreen({phase, setPhase, routeId, onComplete, onBack }) {
 
   return (
     <>
+    
+
+    <div className={styles.container}>
     <TopPanel 
       points={points} 
       title={route.name} 
@@ -109,9 +112,6 @@ function JourneyScreen({phase, setPhase, routeId, onComplete, onBack }) {
       onBack={onBack}
       user={user}
     />
-
-    <div className={styles.container}>
-
       <MapView
         route={route}
         userPosition={position}
