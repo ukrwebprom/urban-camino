@@ -83,7 +83,8 @@ function UserOverlay ({onClose}) {
     return (
         <div className={styles.main}>
             <img src={userIcon} />
-            <p className={styles.loginDescription}>Your path matters. Log in to save your steps and earn your rewards.</p>
+            <p className={styles.loginTitle}>Your path matters</p>
+            <p className={styles.loginDescription}>Create an account to save your walking history, keep your shells, and receive beautiful Camino certificates.</p>
             <ul className={styles.modeSwitcher}>
                 <li className = {isLogin ? styles.activeItem: ''} onClick={() => setIsLogin(true)}>Log In</li>
                 <li className = {!isLogin ? styles.activeItem: ''} onClick={() => setIsLogin(false)}>Create account</li>
