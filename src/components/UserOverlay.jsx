@@ -6,7 +6,6 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../firebase';
-import { signOut } from "firebase/auth";
 
 
 function UserOverlay ({onClose}) {
@@ -64,19 +63,6 @@ function UserOverlay ({onClose}) {
     });
     }
 
-    function logout() {
-    signOut(auth)
-    .then(() => {
-      console.log('Пользователь вышел из системы');
-      setMessage('Пользователь вышел из системы');
-      onClose();
-    })
-    .catch((error) => {
-      console.error('Ошибка при выходе:', error.message);
-      setError(error.message);
-    });
-    }
-
     useEffect(() => {
         setError(null);
     }, [email, password])
@@ -116,7 +102,6 @@ function UserOverlay ({onClose}) {
                 <p>{message}</p>
             </div>}
             
-            <p onClick={() => logout()}>Log out</p>
             <img src={closeIcon} className={styles.closeBtn} onClick={onClose} />
         </div>
     )
