@@ -7,9 +7,11 @@ import LanguageSelector from './LanguageSelector';
 import { useState } from 'react';
 import UserOverlay from './UserOverlay';
 import LoggedUserOverlay from './LoggedUserOverlay'
+import { useAuth } from '../AuthProvider';
 
-function TopPanel({mode, onBack, points=0, title, user}) {
+function TopPanel({mode, onBack, points=0, title}) {
     const [showOverlay, setShowOverlay] = useState(false);
+    const { user, loading } = useAuth();
     return (
         <>
         <div className={styles.topPanel}
@@ -18,11 +20,11 @@ function TopPanel({mode, onBack, points=0, title, user}) {
               {mode !=="home" && <img src={backArrow} className={styles.backArrow} onClick={onBack} />}
               {mode !=="home" && <h1 className={styles.topPanelTitle}>{title}</h1>}
               {mode === 'tracking' && <PointsDisplay points={points} />}
-              <img src={user ? user.photoURL : userIcon} onClick={() => setShowOverlay(true)} className={styles.userPic}/>
+              <img src={(user && user.photoURL) ? user.photoURL : userIcon} onClick={() => setShowOverlay(true)} className={styles.userPic}/>
               {/* <img src={logo} alt="Urban Camino Logo" className={styles.logo} /> */}
         </div>
         {showOverlay && (user ?
-            <LoggedUserOverlay onClose={() => setShowOverlay(false)} /> :
+            <LoggedUserOverlay onClose={() => setShowOverlay(false)} user={user} /> :
             <UserOverlay onClose={() => setShowOverlay(false)} />)
             
         }
