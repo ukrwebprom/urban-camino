@@ -19,6 +19,7 @@ export const AuthProvider = ({ children }) => {
         try {
           const response = await createUser(firebaseUser);
           console.log('response', response);
+          setPoints(response.achievements.points);
         } catch (error) {
           console.error('Ошибка при получении данных пользователя:', error);
         }} else {

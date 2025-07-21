@@ -7,7 +7,7 @@ export async function createUser(firebaseUser) {
     email: firebaseUser.email,
   };
 
-  const res = await fetch(API+'users', {
+  const res = await fetch(`${API}users`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),

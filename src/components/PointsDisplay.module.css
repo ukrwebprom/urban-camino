@@ -1,17 +1,19 @@
     .container {
-      display: 'flex';
-      alignItems: 'center';
-      color: '#fff';
-      fontSize: '20px';
-      fontWeight: 'bold';
+      display: flex;
+      align-items: center;
+      font-weight: 'bold';
+      margin-right: 10px;
     }
 
     .icon {
-      width: '30px';
-      height: '30px';
-      marginRight: '5px';
+      width: 30px;
+      height: 30px;
+      margin-right: 5px;
     }
 
     .text {
-      lineHeight: '30px';
+      line-height: 30px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 800;
     }

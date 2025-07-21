@@ -59,7 +59,7 @@ function App() {
         </>
       )}
       {step === 'finish' && <FinishScreen 
-      routeId={'padawan'} 
+      routeId={selectedRouteId} 
       />}
 
     </div>
